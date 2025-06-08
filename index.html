@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Chart Generator v1.0</title>
+        <link href="./style.css" rel="stylesheet">
+        <script src="./script.js" defer></script>
+    </head>
+    <body>
+        <header>
+            <h1>Chart Generator v1.0</h1>
+        </header>
+        <section id="site-body">
+            <div id="Scene-Form-Container">
+                <h2>Info:</h2>
+                <form id="Scene-Form">
+                    <!--Unit-->
+                    <label for="unit" class="bold-label">Unit:</label>
+                    <input type="text" id="unit" name="unit" value="539" />
+                    <br />
+
+                    <!--Nature-->
+                    <label for="nature" class="bold-label">Nature:</label>
+                    <input type="text" id="nature" name="nature" value="cardiac" />
+                    <br />
+
+
+                    <!--Age-->
+                    <label for="age" class="bold-label">Patient Age:</label>
+                    <input type="text" id="age" name="age" value="35"/>
+
+                    <!--Sex-->
+                    <label for="sex" class="bold-label">Sex:</label>
+
+                    <label for="male">M</label>
+                    <input type="radio" id="male" name="sex" value="male" checked>
+                    <label for="female">F</label>
+                    <input type="radio" id="female" name="sex" value="female">
+                    <br />
+
+                    <!--AVPU-->
+                    <label for="AVPU" class="bold-label">Level of Consciousness:</label>
+
+                    <label for="alert">A</label>
+                    <input type="radio" id="alert" name="AVPU" value="alert" checked>
+                    <label for="verbal">V</label>
+                    <input type="radio" id="verbal" name="AVPU" value="verbal">
+                    <label for="painful">P</label>
+                    <input type="radio" id="painful" name="AVPU" value="painful">
+                    <label for="unresponsive">U</label>
+                    <input type="radio" id="unresponsive" name="AVPU" value="unresponsive">
+                    <br />
+
+                    <!--Orientation-->
+                    <label for="orientation" class="bold-label">Orientation:</label>
+
+                    <label for="person-orientation">Person</label>
+                    <input id="person-orientation" name="orientation" value="person-orientation" type="checkbox" checked>
+                    <label for="place-orientation">Place</label>
+                    <input id="place-orientation" name="orientation" value="place-orientation" type="checkbox" checked>
+                    <label for="time-orientation">Time</label>
+                    <input id="time-orientation" name="orientation" value="time-orientation" type="checkbox" checked>
+                    <label for="event-orientation">Event</label>
+                    <input id="event-orientation" name="orientation" value="event-orientation" type="checkbox" checked>
+                    <br />
+
+                    <!--Position-->
+                    <label for="position" class="bold-label">Position:</label>
+                    
+                    <label for="sitting-position">Sitting</label>
+                    <input id="sitting-position" name="position" value="sitting-position" type="radio">
+                    <label for="sitting-position">Standing</label>
+                    <input id="standing-position" name="position" value="standing-position" type="radio">
+                    <label for="supine-position">Supine</label>
+                    <input id="supine-position" name="position" value="supine-position" type="radio">
+                    <label for="L-lateral-position">L-Lateral</label>
+                    <input id="L-Lateral-position" name="position" value="L-lateral-position" type="radio">
+                    <label for="R-lateral-position">R-Lateral</label>
+                    <input id="R-Lateral-position" name="position" value="R-lateral-position" type="radio">
+                    <br />
+
+                    <!--Location-->
+                    <label for="location" class="bold-label">Location:</label>
+                    <input type="text" id="location" name="location">
+                    <br />
+
+                    <!--Accompanied By-->
+                    <label for="bystanders" class="bold-label">Bystanders:</label>
+                    <input type="text" id="bystanders" name="bystanders">
+                    <br />
+
+                    <!--Reset Button-->
+                    <input type="reset">
+                </form>
+            </div>
+            <button id='generate-chart' type="button">Generate Chart</button>
+            <!--Chart Generator-->
+            <div id="chart-generator-container">
+                <h2>Chart:</h2>
+                <p id="dispatch-output" class="gen-output">No Chart Generated Yet.</p>
+                <p id="scene-output" class="gen-output"></p>
+
+            </div>
+            <button id="reset-chart-gen" type="button">Reset Chart</button>
+
+
+        </section>
+    </body>
+</html>
