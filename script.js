@@ -13,6 +13,8 @@ function updateBox() {
     let location = document.getElementById('location').value;
     let attendedBy = document.getElementById('bystanders').value;
 
+    // Update reset button
+    resetGenButton.innerHTML = "Reset";
 
     // Dispatch information
     let dispatchOutput = `${unit} was dispatched to a ${nature} for a ${age} yo${sex}.`
@@ -28,13 +30,23 @@ function updateBox() {
         attendedByOutput = ' attended by ' + attendedBy;
     }
 
+    // Exam
 
+
+
+    // Transport
 
     document.getElementById('scene-output').innerHTML = sceneOutput + positionOutput + locationOutput + attendedByOutput + ".";
 }
 
 function resetBox() {
-    document.getElementById('chart-gen-output').innerHTML = "Chart has been reset..";
+    let outputLines = document.getElementsByClassName('gen-output');
+    for (i = 0; i < outputLines.length; i++) {
+        outputLines[i].innerHTML = '';
+    }
+    outputLines[0].innerHTML = 'No Chart Generated Yet..'
+
+    resetGenButton.innerHTML = "Chart has been reset..";
 }
 
 function determineAVPU() {
