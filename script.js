@@ -63,12 +63,10 @@ function updateBox() {
     let skinOutput = determineSkinOutput();
     let radialOutput = determineRadialOutput();
     let respOutput = determineRespiratoryOutput();
+    let bpOutput = determineBP();
 
     document.getElementById('exam-output').innerHTML = skinOutput + radialOutput
-        + respOutput;
-
-
-
+        + respOutput + bpOutput;
 
 
     // ALS
@@ -154,8 +152,9 @@ function determineRespiratoryOutput() {
     let rightLungSound = document.getElementById('right-lung-sound').innerHTML.toLowerCase();
 
     let spo2Value = document.getElementById('spo2-value').value.toLowerCase();
-    let adequateO2 = document.getElementById('adequate-spo2').checked;
     let roomAir = document.getElementById('room-air-O2').checked;
+
+    let other = document.getElementById('respiratory-other').value;
 
     let respOutput = "";
 
@@ -240,17 +239,56 @@ function determineRespiratoryOutput() {
             }
         }
 
-        spo2Value ? respOutput += `SpO2 was found to be ${spo2Value}% indicating ` : respOutput += `SpO2 indicated `;
-        adequateO2 ? respOutput += "adequate oxygenation" : respOutput += "inadequate oxygenation";
-        if (roomAir) {
-            respOutput += " at room air.";
+        if (spo2Value > 91) {
+            respOutput += `SpO2 was found to be ${spo2Value}% indicating adequate oxygenation`;
+        } else if (spo2Value === "") {
+            document.getElementById('error-output').innerHTML += "Missing input: SpO2<br/>";
+        } else {
+            respOutput += `SpO2 was found to be ${spo2Value}% indicating inadequate oxygenation`;
         }
 
-            
+        roomAir ? respOutput += " at room air. " : respOutput += ". "
     }
 
-
+    if (other) {
+        respOutput += " " + other;
+    }
     return respOutput;
+}
+
+
+function determineBP() {
+    let bp = document.getElementById('bp').value.toLowerCase();
+    let bpOutput = ""
+
+    if (bp) {
+        let systolic = bp.split("/")[0]
+        let diastolic = bp.split("/")[1]
+
+        if (systolic >= 100 && systolic <= 140 && diastolic <= 80) {
+            bpOutput += "The patient's blood pressure was obtained and found to be within normal limits. ";
+        } else if (systolic > 140 && diastolic > 80) {
+            bpOutput += `The patient's blood pressure was obtained and found to be elevated at ${bp} mm Hg. `
+        } else {
+            bpOutput += `The patient's blood pressure was obtained. `
+            if (systolic > 140) {
+               bpOutput += `The patient's systolic blood pressure was found to be elevated at ${systolic} mm Hg. `
+            }
+            
+            if (systolic < 100) {
+               bpOutput += `The patient's systolic blood pressure was found to be decreased at ${systolic} mm Hg. `
+            }
+
+            if (diastolic > 80) {
+               bpOutput += `Of note, the patient's diastolic blood pressure was found to be elevated at ${diastolic} mm Hg. `
+            }
+        }
+        
+    } else {
+        document.getElementById('error-output').innerHTML += "Missing Input: Blood Pressure<br />";
+    }
+
+    return bpOutput
 
 }
 
