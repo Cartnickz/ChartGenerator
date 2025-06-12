@@ -38,11 +38,11 @@ function updateBox() {
     let pronouns = []
 
     if (sex === 'm') {
-        pronouns = ['he', 'him', 'his', 'his'];
+        pronouns = ['he', 'him', 'his', 'his', 's'];
     } else if (sex === 'f') {
-        pronouns = ['she', 'her', 'her', 'hers'];
+        pronouns = ['she', 'her', 'her', 'hers', 's'];
     } else {
-        pronouns = ['they', 'them', 'their', 'theirs'];
+        pronouns = ['they', 'them', 'their', 'theirs', ''];
     }
     
     let dispatchOutput = `${unit} was dispatched to a ${nature} for a ${age} yo${sex}.`
@@ -212,7 +212,7 @@ function getTransportOutput(unit, pronouns) {
             + `The patient was made aware of the limitations of a pre-hospital assessment and the risks of refusing further care and evaluation. `
             + `Patient repeated that ${pronouns[0]} did not want to go to the hospital and ${pronouns[0]} signed AMA. `
             + '<br /><br />'
-            + `The patient was advised to call back at anytime if ${pronouns[0]} changes ${pronouns[2]} mind or if ${pronouns[2]} condition worsens. `
+            + `The patient was advised to call back at anytime if ${pronouns[0]} change${pronouns[4]} ${pronouns[2]} mind or if ${pronouns[2]} condition worsens. `
             + '<br /><br />'
             + `${unit} cleared RMA/AMA.`
         } else {  // Transport
