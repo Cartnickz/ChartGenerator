@@ -11,3 +11,7 @@ html {
 .gen-output {
     font-family: 'Courier New', Courier, monospace;
 }
+
+#error-output {
+    color: red;
+}
