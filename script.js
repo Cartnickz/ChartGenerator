@@ -1,6 +1,8 @@
 
 let generateButton = document.getElementById('generate-chart');
 let resetGenButton = document.getElementById('reset-chart-gen');
+let errorLine = document.getElementById('error-output');
+
 
 
 function updateBox() {
@@ -14,17 +16,33 @@ function updateBox() {
     resetGenButton.innerHTML = "Reset";
 
     // Dispatch information
-    let unit = document.getElementById('unit').value;
-    let nature = document.getElementById('nature').value;
-    let age = document.getElementById('age').value;
-    let sex = document.querySelector('input[name="sex"]:checked').value.slice(0, 1);
+    let unit = seekInput(document.getElementById('unit'));
+    let nature = seekInput(document.getElementById('nature'));
+    let age = seekInput(document.getElementById('age'));
+    let sex = '';
+
+    // Sex
+    let sexInput = document.querySelector('input[name="sex"]:checked')
+    if (sexInput) {
+        if (sexInput.value === 'male') {
+            sex = 'm'
+        } else if (sexInput.value === 'female') {
+            sex = 'f'
+        } else {
+            sex = ''
+        }
+    } else {
+        errorLine += "Missing input: " + 'sex' + "<br />"
+    }
 
     let pronouns = []
 
-    if (document.querySelector('input[name="sex"]:checked').value === 'male') {
+    if (sex === 'm') {
         pronouns = ['he', 'him', 'his', 'his'];
-    } else {
+    } else if (sex === 'f') {
         pronouns = ['she', 'her', 'her', 'hers'];
+    } else {
+        pronouns = ['they', 'them', 'their', 'theirs'];
     }
     
     let dispatchOutput = `${unit} was dispatched to a ${nature} for a ${age} yo${sex}.`
@@ -33,7 +51,7 @@ function updateBox() {
     // Scene description
     let avpu = determineAVPU();
     let positionSelect = determinePosition();
-    let location = document.getElementById('location').value;
+    let location = seekInput(document.getElementById('location'));
     let attendedBy = document.getElementById('bystanders').value;
 
     let sceneOutput = `On arrival, the patient was ${avpu} `;
@@ -69,48 +87,67 @@ function resetBox() {
     resetGenButton.innerHTML = "Chart has been reset..";
 }
 
+function seekInput(input) {
+    if (input.value) {
+        return input.value
+    } else {
+        document.getElementById('error-output').innerHTML += "Missing input: " + input.name + "<br />";
+    }
+}
+
+
 function determineAVPU() {
     let avpuOutput = "";
-    let avpu = document.querySelector('input[name="AVPU"]:checked').value;
-    const orientation = {
-        person: document.getElementById('person-orientation').checked,
-        place: document.getElementById('place-orientation').checked,
-        time: document.getElementById('time-orientation').checked,
-        event: document.getElementById('event-orientation').checked
-    };
-    let orientationTrue = [];
 
-    let orientationCount = 0
-    Object.keys(orientation).forEach(question => {
-        if (orientation[question]) {
-            orientationCount++;
-            orientationTrue.push(question);
+    let avpuInput = document.querySelector('input[name="AVPU"]:checked');
+
+    if (avpuInput) {
+        let avpu = document.querySelector('input[name="AVPU"]:checked').value;
+        const orientation = {
+            person: document.getElementById('person-orientation').checked,
+            place: document.getElementById('place-orientation').checked,
+            time: document.getElementById('time-orientation').checked,
+            event: document.getElementById('event-orientation').checked
         };
-    });
+        let orientationTrue = [];
 
-    // Patient is alert
-    if (avpu === 'alert') {
-        if (orientationCount === 4) {
-            avpuOutput = 'awake, alert, and oriented x 4';
-        } else if (orientationCount === 3) {     
-            avpuOutput = 'awake, alert, and oriented to ' + orientationTrue[0] + ", " 
-            + orientationTrue[1] + ", and " + orientationTrue[2];
-        } else if (orientationCount === 2) {
-            avpuOutput = 'awake, alert, and oriented to ' + orientationTrue[0] + " and " 
-            + orientationTrue[1];
-        } else if (orientationCount === 1) {
-            avpuOutput = 'awake, alert, and oriented to ' + orientationTrue[0];
+        let orientationCount = 0
+        Object.keys(orientation).forEach(question => {
+            if (orientation[question]) {
+                orientationCount++;
+                orientationTrue.push(question);
+            };
+        });
+
+        // Patient is alert
+        if (avpu === 'alert') {
+            if (orientationCount === 4) {
+                avpuOutput = 'awake, alert, and oriented x 4';
+            } else if (orientationCount === 3) {     
+                avpuOutput = 'awake, alert, and oriented to ' + orientationTrue[0] + ", " 
+                + orientationTrue[1] + ", and " + orientationTrue[2];
+            } else if (orientationCount === 2) {
+                avpuOutput = 'awake, alert, and oriented to ' + orientationTrue[0] + " and " 
+                + orientationTrue[1];
+            } else if (orientationCount === 1) {
+                avpuOutput = 'awake, alert, and oriented to ' + orientationTrue[0];
+            } else if (orientationCount === 0) {
+                avpuOutput = 'awake, alert, but not oriented to person, place, event, or time';
+            }
+
+        } else if (avpu === 'verbal') {  // Patient is responsive to verbal
+            avpuOutput = 'responsive to verbal stimuli';
+        } else if (avpu === 'painful') {  // Patient is responsive to pain
+            avpuOutput = 'responsive to painful stimuli';
+        } else if (avpu === 'unresponsive') {
+            avpuOutput = 'unresponsive';
         }
-
-    } else if (avpu === 'verbal') {  // Patient is responsive to verbal
-        avpuOutput = 'responsive to verbal stimuli';
-    } else if (avpu === 'painful') {  // Patient is responsive to pain
-        avpuOutput = 'responsive to painful stimuli';
-    } else if (avpu === 'unresponsive') {
-        avpuOutput = 'unresponsive';
+        return avpuOutput
+    } else {
+        document.getElementById('error-output').innerHTML += 'Missing input: AVPU<br />';
     }
 
-    return avpuOutput
+
 }
 
 function determinePosition() {
@@ -129,7 +166,7 @@ function determinePosition() {
             return 'right-lateral recumbant position';
         }
     } else {
-        document.getElementById('error-output').innerHTML += "Please select a position. ";
+        document.getElementById('error-output').innerHTML += "Missing input: position<br />";
     }
 
 
@@ -155,16 +192,16 @@ function getALSStatus() {
             return 'ALS arrived on scene. BLS assisted two ALS providers in providing patient care.'
         }
     } else {
-        document.getElementById('error-output').innerHTML += "Please select an ALS disposition. ";
+        document.getElementById('error-output').innerHTML += "Missing input: ALS disposition<br />";
     }
 }
 
 function getTransportOutput(unit, pronouns) {
     let transportDecision = document.querySelector('input[name="transport-decision"]:checked');
     let transportMethod = document.querySelector('input[name="transport-method"]:checked');
-    let destination = document.getElementById('destination').value;
-    let bed = document.getElementById('bed').value;
-    let rnName = document.getElementById('rn-name').value;
+    let destination = seekInput(document.getElementById('destination'));
+    let bed = seekInput(document.getElementById('bed'));
+    let rnName = seekInput(document.getElementById('rn-name'));
 
     let transportOutput = ''
 
@@ -180,7 +217,7 @@ function getTransportOutput(unit, pronouns) {
             + `${unit} cleared RMA/AMA.`
         } else {  // Transport
             if (!transportMethod) {
-                document.getElementById('error-output') += 'Please select transport method. ';
+                document.getElementById('error-output').innerHTML += 'Missing input: transport method<br />';
             } else {
                 // Assisted to Stretcher
                 if (transportMethod.value === 'assisted') {
@@ -199,8 +236,6 @@ function getTransportOutput(unit, pronouns) {
                 // en route
                 transportOutput += `<br /><br />En route to ${destination}, the patient was continuously monitored and reassessed. The patient had no new complaints.`
 
-
-
                 // at destination
                 transportOutput += `<br /><br />At ${destination}, the patient was transferred to bed ${bed} without incident. Both side rails were raised. Patient care was transferred to RN ${rnName} with report.`
 
@@ -209,6 +244,8 @@ function getTransportOutput(unit, pronouns) {
             }
         }
 
+    } else {
+        document.getElementById('error-output').innerHTML += "Missing input: transport decision"
     }
 }
 

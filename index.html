@@ -11,151 +11,159 @@
             <h1>Chart Generator v1.0</h1>
         </header>
         <section id="site-body">
-            <div id="Scene-Form-Container">
+            <div id="Form-Container">
                 <h2>Info:</h2>
-                <form id="Scene-Form">
-                    <!--Unit-->
-                    <label for="unit" class="bold-label">Unit:</label>
-                    <input type="text" id="unit" name="unit"/>
-                    <br />
+                <form id="Form">
+                    <div id="scene-size-up-fields">
+                        <!--Unit-->
+                        <label for="unit" class="bold-label">Unit:</label>
+                        <input type="text" id="unit" name="unit"/>
+                        <br />
 
-                    <!--Nature-->
-                    <label for="nature" class="bold-label">Nature:</label>
-                    <input type="text" id="nature" name="nature"/>
-                    <br />
+                        <!--Nature-->
+                        <label for="nature" class="bold-label">Nature:</label>
+                        <input type="text" id="nature" name="nature"/>
+                        <br />
 
+                        <!--Age-->
+                        <label for="age" class="bold-label">Patient Age:</label>
+                        <input type="text" id="age" name="age"/>
 
-                    <!--Age-->
-                    <label for="age" class="bold-label">Patient Age:</label>
-                    <input type="text" id="age" name="age"/>
+                        <!--Sex-->
+                        <label for="sex" class="bold-label">Sex:</label>
 
-                    <!--Sex-->
-                    <label for="sex" class="bold-label">Sex:</label>
+                        <label for="male">M</label>
+                        <input type="radio" id="male" name="sex" value="male">
+                        <label for="female">F</label>
+                        <input type="radio" id="female" name="sex" value="female">
+                        <label for="other">Other</label>
+                        <input type="radio" id="other" name="sex" value="other">
+                        <br />
 
-                    <label for="male">M</label>
-                    <input type="radio" id="male" name="sex" value="male">
-                    <label for="female">F</label>
-                    <input type="radio" id="female" name="sex" value="female">
-                    <br />
+                        <!--AVPU-->
+                        <label for="AVPU" class="bold-label">Level of Consciousness:</label>
 
-                    <!--AVPU-->
-                    <label for="AVPU" class="bold-label">Level of Consciousness:</label>
+                        <label for="alert">A</label>
+                        <input type="radio" id="alert" name="AVPU" value="alert">
+                        <label for="verbal">V</label>
+                        <input type="radio" id="verbal" name="AVPU" value="verbal">
+                        <label for="painful">P</label>
+                        <input type="radio" id="painful" name="AVPU" value="painful">
+                        <label for="unresponsive">U</label>
+                        <input type="radio" id="unresponsive" name="AVPU" value="unresponsive">
+                        <br />
 
-                    <label for="alert">A</label>
-                    <input type="radio" id="alert" name="AVPU" value="alert">
-                    <label for="verbal">V</label>
-                    <input type="radio" id="verbal" name="AVPU" value="verbal">
-                    <label for="painful">P</label>
-                    <input type="radio" id="painful" name="AVPU" value="painful">
-                    <label for="unresponsive">U</label>
-                    <input type="radio" id="unresponsive" name="AVPU" value="unresponsive">
-                    <br />
+                        <!--Orientation-->
+                        <label for="orientation" class="bold-label">Orientation:</label>
 
-                    <!--Orientation-->
-                    <label for="orientation" class="bold-label">Orientation:</label>
+                        <label for="person-orientation">Person</label>
+                        <input id="person-orientation" name="orientation" value="person-orientation" type="checkbox" checked>
 
-                    <label for="person-orientation">Person</label>
-                    <input id="person-orientation" name="orientation" value="person-orientation" type="checkbox" checked>
+                        <label for="place-orientation">Place</label>
+                        <input id="place-orientation" name="orientation" value="place-orientation" type="checkbox" checked>
 
-                    <label for="place-orientation">Place</label>
-                    <input id="place-orientation" name="orientation" value="place-orientation" type="checkbox" checked>
+                        <label for="time-orientation">Time</label>
+                        <input id="time-orientation" name="orientation" value="time-orientation" type="checkbox" checked>
 
-                    <label for="time-orientation">Time</label>
-                    <input id="time-orientation" name="orientation" value="time-orientation" type="checkbox" checked>
+                        <label for="event-orientation">Event</label>
+                        <input id="event-orientation" name="orientation" value="event-orientation" type="checkbox" checked>
+                        <br />
 
-                    <label for="event-orientation">Event</label>
-                    <input id="event-orientation" name="orientation" value="event-orientation" type="checkbox" checked>
-                    <br />
+                        <!--Position-->
+                        <label for="position" class="bold-label">Position:</label>
+                        
+                        <label for="sitting-position">Sitting</label>
+                        <input id="sitting-position" name="position" value="sitting-position" type="radio">
 
-                    <!--Position-->
-                    <label for="position" class="bold-label">Position:</label>
-                    
-                    <label for="sitting-position">Sitting</label>
-                    <input id="sitting-position" name="position" value="sitting-position" type="radio">
+                        <label for="sitting-position">Standing</label>
+                        <input id="standing-position" name="position" value="standing-position" type="radio">
 
-                    <label for="sitting-position">Standing</label>
-                    <input id="standing-position" name="position" value="standing-position" type="radio">
+                        <label for="supine-position">Supine</label>
+                        <input id="supine-position" name="position" value="supine-position" type="radio">
 
-                    <label for="supine-position">Supine</label>
-                    <input id="supine-position" name="position" value="supine-position" type="radio">
+                        <label for="L-lateral-position">L-Lateral</label>
+                        <input id="L-Lateral-position" name="position" value="L-lateral-position" type="radio">
 
-                    <label for="L-lateral-position">L-Lateral</label>
-                    <input id="L-Lateral-position" name="position" value="L-lateral-position" type="radio">
+                        <label for="R-lateral-position">R-Lateral</label>
+                        <input id="R-Lateral-position" name="position" value="R-lateral-position" type="radio">
+                        <br />
 
-                    <label for="R-lateral-position">R-Lateral</label>
-                    <input id="R-Lateral-position" name="position" value="R-lateral-position" type="radio">
-                    <br />
+                        <!--Location-->
+                        <label for="location" class="bold-label">Location:</label>
+                        <input type="text" id="location" name="location">
+                        <br />
 
-                    <!--Location-->
-                    <label for="location" class="bold-label">Location:</label>
-                    <input type="text" id="location" name="location">
-                    <br />
+                        <!--Accompanied By-->
+                        <label for="bystanders" class="bold-label">Bystanders:</label>
+                        <input type="text" id="bystanders" name="bystanders">
+                        <br /><br />
 
-                    <!--Accompanied By-->
-                    <label for="bystanders" class="bold-label">Bystanders:</label>
-                    <input type="text" id="bystanders" name="bystanders">
-                    <br /><br />
+                    </div>
 
+                    <div id="als-fields">
                     <!--ALS-->
-                    <label for="ALS" class="bold-label">ALS:</label>
+                        <label for="ALS" class="bold-label">ALS:</label>
 
-                    <label for="not-requested">Not Requested</label>
-                    <input id="not-requested" name="ALS" value="not-requested" type="radio" checked>
+                        <label for="not-requested">Not Requested</label>
+                        <input id="not-requested" name="ALS" value="not-requested" type="radio" checked>
 
-                    <label for="not-available">Not Available</label>
-                    <input id="not-available" name="ALS" value="not-available" type="radio">
+                        <label for="not-available">Not Available</label>
+                        <input id="not-available" name="ALS" value="not-available" type="radio">
 
-                    <label for="proximity">Proximity</label>
-                    <input id="proximity" name="ALS" value="proximity" type="radio">
+                        <label for="proximity">Proximity</label>
+                        <input id="proximity" name="ALS" value="proximity" type="radio">
 
-                    <label for="snn">SNN</label>
-                    <input id="snn" name="ALS" value="snn" type="radio">
+                        <label for="snn">SNN</label>
+                        <input id="snn" name="ALS" value="snn" type="radio">
 
-                    <label for="als-triage">Triage</label>
-                    <input id="als-triage" name="ALS" value="als-triage" type="radio">
+                        <label for="als-triage">Triage</label>
+                        <input id="als-triage" name="ALS" value="als-triage" type="radio">
 
-                    <label for="one-treat">1 medic</label>
-                    <input id="one-treat" name="ALS" value="one-treat" type="radio">
+                        <label for="one-treat">1 medic</label>
+                        <input id="one-treat" name="ALS" value="one-treat" type="radio">
 
-                    <label for="two-treat">2 medics</label>
-                    <input id="two-treat" name="ALS" value="two-treat" type="radio">
-                    
-                    <br />
+                        <label for="two-treat">2 medics</label>
+                        <input id="two-treat" name="ALS" value="two-treat" type="radio">
+                        
+                        <br />
+                    </div>
 
-                    <!--RMA vs Transport-->
-                    <label for="transport-decision" class="bold-label">Transport Decision:</label>
-                    
-                    <label for="rma">RMA</label>
-                    <input id="rma" name="transport-decision" value="rma" type="radio">
+                    <div id="transport-fields">
+                        <!--RMA vs Transport-->
+                        <label for="transport-decision" class="bold-label">Transport Decision:</label>
+                        
+                        <label for="rma">RMA</label>
+                        <input id="rma" name="transport-decision" value="rma" type="radio">
 
-                    <label for="transport">Transport</label>
-                    <input id="transport" name="transport-decision" value="transport" type="radio">
-                    <br />
+                        <label for="transport">Transport</label>
+                        <input id="transport" name="transport-decision" value="transport" type="radio">
+                        <br />
 
-                    <!--Transport Method-->
-                    <label for="transport-method" class="bold-label">Transport Method:</label>
+                        <!--Transport Method-->
+                        <label for="transport-method" class="bold-label">Transport Method:</label>
 
-                    <label for="assisted">Assisted</label>
-                    <input id="assisted" name="transport-method" value="assisted" type="radio">
+                        <label for="assisted">Assisted</label>
+                        <input id="assisted" name="transport-method" value="assisted" type="radio">
 
-                    <label for="stairchair">Stairchair</label>
-                    <input id="stairchair" name="transport-method" value="stairchair" type="radio">
+                        <label for="stairchair">Stairchair</label>
+                        <input id="stairchair" name="transport-method" value="stairchair" type="radio">
 
-                    <label for="reeves">Reeves</label>
-                    <input id="reeves" name="transport-method" value="reeves" type="radio">
-                    <br />
-                    
-                    <!--Destination-->
-                    <label for="destination" class="bold-label">Destination:</label>
-                    <input type="text" id="destination" name="destination">
-                    
-                    <label for="bed" class="bold-label">Bed:</label>
-                    <input type="text" id="bed" name="bed">
-                    <br />
+                        <label for="reeves">Reeves</label>
+                        <input id="reeves" name="transport-method" value="reeves" type="radio">
+                        <br />
+                        
+                        <!--Destination-->
+                        <label for="destination" class="bold-label">Destination:</label>
+                        <input type="text" id="destination" name="destination">
+                        
+                        <label for="bed" class="bold-label">Bed:</label>
+                        <input type="text" id="bed" name="bed">
+                        <br />
 
-                    <!--RN Name-->
-                    <label for="rn-name" class="bold-label">RN:</label>
-                    <input type="text" id="rn-name" name="rn-name">
+                        <!--RN Name-->
+                        <label for="rn-name" class="bold-label">RN:</label>
+                        <input type="text" id="rn-name" name="rn-name">
+                    </div>
 
                     <br /><br />
 
