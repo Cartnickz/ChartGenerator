@@ -16,11 +16,12 @@
                 <form id="Form">
                     <div id="scene-size-up-fields">
                         <!--Unit-->
-                        <label for="unit" class="bold-label">Unit:</label>
-                        <input type="text" id="unit" name="unit"/>
-                        <br />
+                            <label for="unit" class="bold-label">Unit:</label>
+                            <input type="text" id="unit" name="unit"/>
+                            <br />
 
                         <!--Nature-->
+
                         <label for="nature" class="bold-label">Nature:</label>
                         <input type="text" id="nature" name="nature"/>
                         <br />
@@ -119,10 +120,12 @@
                         <br />
 
                         <!--Respiratory-->
-
                         <label for="resp-distress" class="bold-label">Respiratory Distress:</label>
-                        <input id="resp-distress" name="resp-distress" value="yes" type="checkbox">
-
+                        <input id="resp-distress" name="resp-distress" type="checkbox">
+                        <label for="resp-muscle-use">Accessory Muscles</label>
+                        <input id="resp-muscle-use" name="resp-muscle-use" type="checkbox">
+                        <label for="resp-dyspnea">Dyspnea</label>
+                        <input id="resp-dyspnea" name="resp-dyspnea" type="text">
                         <br />
 
                         <label for="respirations" class="bold-label">Respirations:</label>
@@ -139,21 +142,13 @@
 
                         <!--SpO2 -->
                         <label for="adequate-spo2" class="bold-label">Adequate SpO2?:</label>
-                        <label for="adequate-spo2-y">Yes</label>
-                        <input id="adequate-spo2-y" name="adequate-spo2" value="y" type="radio" checked>
-                        <label for="adequate-spo2-n">No</label>
-                        <input id="adequate-spo2-n" name="adequate-spo2" value="n" type="radio">
+                        <input id="adequate-spo2" name="adequate-spo2" type="checkbox" checked>
                         <label for="room-air-O2">| Room Air?</label>
                         <input id="room-air-O2" name="room-air-O2" type="checkbox" checked>
                         <label for="spo2-value">SpO2</label>
                         <input id="spo2-value" name="spo2-value" type="text">
-
                         <br />
                         <br />
-
-
-
-
                     </div>
 
                     <div id="als-fields">
@@ -233,6 +228,7 @@
                 <h2>Chart:</h2>
                 <p id="dispatch-output" class="gen-output">No Chart Generated Yet.</p>
                 <p id="scene-output" class="gen-output"></p>
+                <p id="exam-output" class="gen-output"></p>
                 <p id="als-output" class="gen-output"></p>
                 <p id="transport-output" class="gen-output"></p>
                 <p id="error-output" class="gen-output"></p>

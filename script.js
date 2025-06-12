@@ -3,13 +3,11 @@ let generateButton = document.getElementById('generate-chart');
 let resetGenButton = document.getElementById('reset-chart-gen');
 
 function updateBox() {
-    // Reset output box
+    // Reset output box and reset button
     let outputLines = document.getElementsByClassName('gen-output');
     for (i = 0; i < outputLines.length; i++) {
         outputLines[i].innerHTML = '';
     }
-
-    // Update reset button
     resetGenButton.innerHTML = "Reset";
 
     // Dispatch information
@@ -56,12 +54,22 @@ function updateBox() {
     let locationOutput = ' ' + location;
     let attendedByOutput = '';
 
-    if (attendedBy) {
-        attendedByOutput = ' attended by ' + attendedBy;
-    }
+    if (attendedBy) { attendedByOutput = ' attended by ' + attendedBy; }
 
     document.getElementById('scene-output').innerHTML = sceneOutput + positionOutput 
     + locationOutput + attendedByOutput + ".";
+
+    // Exam
+    let skinOutput = determineSkinOutput();
+    let radialOutput = determineRadialOutput();
+    let respOutput = determineRespiratoryOutput();
+
+    document.getElementById('exam-output').innerHTML = skinOutput + radialOutput
+        + respOutput;
+
+
+
+
 
     // ALS
     let alsOutput = getALSStatus();
@@ -71,6 +79,178 @@ function updateBox() {
     let transportOutput = getTransportOutput(unit, pronouns);
     document.getElementById('transport-output').innerHTML = transportOutput;
 
+
+}
+
+
+function determineSkinOutput() {
+    let skinTemperature = document.getElementById('skin-temperature').innerHTML.toLowerCase();
+    let skinColor = document.getElementById('skin-color').innerHTML.toLowerCase();
+    let skinMoisture = document.getElementById('skin-moisture').innerHTML.toLowerCase();
+    let skinCondition = document.getElementById('skin-condition').value;
+
+    let skinOutput = "On exam, the patient's skin was found to be ";
+
+    if (skinTemperature === 'normal temperature' && skinColor === 'normal color' && skinMoisture === 'normal moisture') {
+        skinOutput += 'normal in temperature, color, and moisture. ';
+    } else {
+        if (skinTemperature === 'normal temperature') {
+            skinOutput += 'normal in temperature, '; 
+        } else {
+            skinOutput += skinTemperature + ', ';
+        }
+
+        if (skinColor === 'normal color') { 
+            skinOutput += 'normal in color, '; 
+        } else {
+            skinOutput += skinColor + ', ';
+        }
+
+        if (skinMoisture === 'normal moisture') {
+            skinOutput += 'and normal in moisture. ';
+        } else {
+            skinOutput += 'and ' + skinMoisture + '. ';
+        }
+    }
+
+    return skinOutput + skinCondition;
+}
+
+function determineRadialOutput() {
+    let radialStrength = document.getElementById('radial-strength').innerHTML.toLowerCase();
+    let radialRegularity = document.getElementById('radial-regularity').innerHTML.toLowerCase();
+    let radialRate = document.getElementById('radial-rate').innerHTML.toLowerCase();
+    let radialEqual = document.getElementById('radial-equal').innerHTML.toLowerCase();
+
+    let radialOutput = "The patient's pulses were found to be ";
+
+    if (radialStrength === 'strong' && radialRegularity === 'regularly regular' && radialRate === 'normal rate' 
+        && radialEqual === 'equal qilaterally') {
+            radialOutput += "strong, steady, normal in rate, and equal bilaterally.";
+    } else {
+        radialOutput += radialStrength + ", " + radialRegularity + ", "
+        if (radialRate === 'normal rate') {
+            radialOutput += "normal in rate, and " + radialEqual + ". ";
+        } else {
+            radialOutput += radialRate + ", and " + radialEqual + ". ";
+        }
+        
+        radialRate 
+    }
+
+    return radialOutput;
+}
+
+
+function determineRespiratoryOutput() {
+    let respDistress = document.getElementById('resp-distress').checked;
+    let respMuscles = document.getElementById('resp-muscle-use').checked;
+    let respDysneaCount = document.getElementById('resp-dyspnea').value.toLowerCase();
+    let respRate = document.getElementById('respiration-rate').innerHTML.toLowerCase();
+    let respDepth = document.getElementById('respiration-depth').innerHTML.toLowerCase();
+    let respRhythm = document.getElementById('respiration-rhythm').innerHTML.toLowerCase();
+
+    let leftLungSound = document.getElementById('left-lung-sound').innerHTML.toLowerCase();
+    let rightLungSound = document.getElementById('right-lung-sound').innerHTML.toLowerCase();
+
+    let spo2Value = document.getElementById('spo2-value').value.toLowerCase();
+    let adequateO2 = document.getElementById('adequate-spo2').checked;
+    let roomAir = document.getElementById('room-air-O2').checked;
+
+    let respOutput = "";
+
+    if (respRate === 'apnic') {
+        respOutput += "The patient did not appear to be breathing. "
+    } else {
+        if (respDistress) {
+            respOutput += "The patient appeared to be respiratory distress. " 
+            respMuscles ? respOutput += "Accessory muscle use noted. " : respOutput += "No accessory muscle use noted. ";
+            
+            if (respDysneaCount) {
+                respOutput += `The patient exhibited ${respDysneaCount} word dyspnea. `;
+            } else {
+                respOutput += "The patient was able to speak in full and complete sentences. ";
+            }
+
+            if (respRate === 'regular rate' && respDepth === 'regular depth' && respRhythm === 'regular rhythm') {
+                respOutput += "Respirations were found to be regular in rate, depth, and rhythm. "
+            } else {
+                if (respRate === 'regular rhythm') {
+                    respOutput += "Respirations were found to be regular in rate, ";
+                } else {
+                    respOutput += `Respirations were found to be ${respRate}, `;
+                }
+
+
+                if (respDepth === 'regular depth') {
+                    respOutput += "regular in depth, ";
+                } else {
+                    respOutput += `${respDepth}, `;
+                }
+
+                if (respRhythm === 'regular rhythm') {
+                    respOutput += "and regular in rhythm. ";
+                } else {
+                    respOutput += "and irregular in rhythm. ";
+                }
+            }
+
+        } else {
+            respOutput += "The patient did not appear to be respiratory distress. " 
+            + "No accessory muscle use noted. The patient was able to speak in full and complete sentences. "
+            + "Respirations were found to be regular in rate, depth, and rhythm. ";
+        }
+
+        // Equal Lung Sounds
+        if (leftLungSound === 'left - clear' && rightLungSound === 'right - clear') {
+            respOutput += "Lung sounds were found to be clear and equal bilaterally. ";
+        } else if (leftLungSound === 'left - diminished' && rightLungSound === 'right - diminished') {
+            respOutput += "Lung sounds were found to be diminished bilaterally. ";
+        } else if (leftLungSound === 'left - wheeze' && rightLungSound === 'right - wheeze') {
+            respOutput += "Audible wheezing was heard throughout both lungs. ";
+        } else if (leftLungSound === 'left - rales' && rightLungSound === 'right - rales') {
+            respOutput += "Audible rales was heard throughout both lungs. ";
+        } else if (leftLungSound === 'left - rhonchi' && rightLungSound === 'right - rhonchi') {
+            respOutput += "Audible rhonchi was heard throughout both lungs. ";
+        } else {
+            // Left-side lung sounds
+            if (leftLungSound === 'left - clear') {
+                respOutput += "Lung sounds were found to clear on the left. ";
+            } else if (leftLungSound === 'left - diminished') {
+                respOutput += "Lung sounds were found to be diminished on the left. "
+            } else if (leftLungSound === 'left - wheeze') {
+                respOutput += "Audible wheezing was heard on patient's left side. "
+            } else if (leftLungSound === 'left - rales') {
+                respOutput += "Audible rales was heard on patient's left side. "
+            } else if (leftLungSound === 'left - rhonchi') {
+                respOutput += "Audible rhonchi was heard on patient's left side. "
+            }
+
+            // Right-side lung sounds
+            if (rightLungSound === 'right - clear') {
+                respOutput += 'Lung sounds were found to be clear on the right. '
+            } else if (rightLungSound === 'right - diminished') {
+                respOutput += 'Lung sounds were found to be diminished on the right. '
+            } else if (rightLungSound === 'right - wheeze') {
+                respOutput += "Audible wheezing was heard on the patient's right side. "
+            } else if (rightLungSound === 'right - rales') {
+                respOutput += "Audible rales was heard on the patient's right side. "
+            } else if (rightLungSound === 'right - rhonchi') {
+                respOutput += "Audible rhonchi was heard on the patient's right side. "
+            }
+        }
+
+        spo2Value ? respOutput += `SpO2 was found to be ${spo2Value}% indicating ` : respOutput += `SpO2 indicated `;
+        adequateO2 ? respOutput += "adequate oxygenation" : respOutput += "inadequate oxygenation";
+        if (roomAir) {
+            respOutput += " at room air.";
+        }
+
+            
+    }
+
+
+    return respOutput;
 
 }
 
@@ -276,7 +456,7 @@ function getTransportOutput(unit, pronouns) {
 document.getElementById('skin-temperature').onclick = () => 
     rotateButton(document.getElementById('skin-temperature'), ['Normal Temperature', 'Hot', 'Cool']);
 document.getElementById('skin-color').onclick = () => 
-    rotateButton(document.getElementById('skin-color'), ['Normal Color', 'Pale', 'Cyanotic', 'Jaundiced']);
+    rotateButton(document.getElementById('skin-color'), ['Normal Color', 'Pale', 'Cyanotic', 'Flushed', 'Jaundiced']);
 document.getElementById('skin-moisture').onclick = () => 
     rotateButton(document.getElementById('skin-moisture'), ['Normal Moisture', 'Diaphoretic']);
 document.getElementById('skin-moisture').onclick = () => 
@@ -290,11 +470,11 @@ document.getElementById('radial-regularity').onclick = () =>
 document.getElementById('radial-rate').onclick = () => 
     rotateButton(document.getElementById('radial-rate'), ['Normal Rate', 'Bradycardic', 'Tachycardic']);
 document.getElementById('radial-equal').onclick = () => 
-    rotateButton(document.getElementById('radial-equal'), ['Equal Bilaterally', 'Not Equal Bilaterally']);
+    rotateButton(document.getElementById('radial-equal'), ['Equal Bilaterally', 'Unequal Bilaterally']);
 
 // Respiration Buttons
 document.getElementById('respiration-rate').onclick = () => 
-    rotateButton(document.getElementById('respiration-rate'), ['Regular Rate', 'Slow', 'Rapid']);
+    rotateButton(document.getElementById('respiration-rate'), ['Regular Rate', 'Slow', 'Rapid', 'Apnic']);
 document.getElementById('respiration-depth').onclick = () => 
     rotateButton(document.getElementById('respiration-depth'), ['Regular Depth', 'Shallow', 'Deep']);
 document.getElementById('respiration-rhythm').onclick = () => 
