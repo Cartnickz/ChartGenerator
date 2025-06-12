@@ -44,7 +44,7 @@
                         <label for="AVPU" class="bold-label">Level of Consciousness:</label>
 
                         <label for="alert">A</label>
-                        <input type="radio" id="alert" name="AVPU" value="alert">
+                        <input type="radio" id="alert" name="AVPU" value="alert" checked>
                         <label for="verbal">V</label>
                         <input type="radio" id="verbal" name="AVPU" value="verbal">
                         <label for="painful">P</label>
@@ -100,6 +100,62 @@
 
                     </div>
 
+                    <div id="exam-fields">
+                        <!--Skin Condition-->
+                        <p class="bold-label">Skin Condition:</p>
+                        <button type="button" id="skin-temperature">Normal Temperature</button>
+                        <button type="button" id="skin-color">Normal Color</button>
+                        <button type="button" id="skin-moisture">Normal Moisture</button>
+                        <input id="skin-condition" name="skin-condition" type="text"></input>
+                        <br />
+
+                        <!--Radial Pulse-->
+                        <p class="bold-label">Radial Pulses:</p>
+                        <button type="button" id="radial-strength">Strong</button>
+                        <button type="button" id="radial-regularity">Regularly Regular</button>
+                        <button type="button" id="radial-rate">Normal Rate</button>
+                        <button type="button" id="radial-equal">Equal Bilaterally</button>
+                        <input id="radial-pulses" name="radial-pulses" type="text"></input>
+                        <br />
+
+                        <!--Respiratory-->
+
+                        <label for="resp-distress" class="bold-label">Respiratory Distress:</label>
+                        <input id="resp-distress" name="resp-distress" value="yes" type="checkbox">
+
+                        <br />
+
+                        <label for="respirations" class="bold-label">Respirations:</label>
+                        <button type="button" id="respiration-rate">Regular Rate</button>
+                        <button type="button" id="respiration-depth">Regular Depth</button>
+                        <button type="button" id="respiration-rhythm">Regular Rhythm</button>
+                        <input id="respirations" name="respirations" type="text">
+                        <br />
+
+                        <p class="bold-label">Lung Sounds:</p>
+                        <button type="button" id="left-lung-sound">Left - Clear</button>
+                        <button type="button" id="right-lung-sound">Right - Clear</button>
+                        <br />
+
+                        <!--SpO2 -->
+                        <label for="adequate-spo2" class="bold-label">Adequate SpO2?:</label>
+                        <label for="adequate-spo2-y">Yes</label>
+                        <input id="adequate-spo2-y" name="adequate-spo2" value="y" type="radio" checked>
+                        <label for="adequate-spo2-n">No</label>
+                        <input id="adequate-spo2-n" name="adequate-spo2" value="n" type="radio">
+                        <label for="room-air-O2">| Room Air?</label>
+                        <input id="room-air-O2" name="room-air-O2" type="checkbox" checked>
+                        <label for="spo2-value">SpO2</label>
+                        <input id="spo2-value" name="spo2-value" type="text">
+
+                        <br />
+                        <br />
+
+
+
+
+                    </div>
+
                     <div id="als-fields">
                     <!--ALS-->
                         <label for="ALS" class="bold-label">ALS:</label>
@@ -136,14 +192,14 @@
                         <input id="rma" name="transport-decision" value="rma" type="radio">
 
                         <label for="transport">Transport</label>
-                        <input id="transport" name="transport-decision" value="transport" type="radio">
+                        <input id="transport" name="transport-decision" value="transport" type="radio" checked>
                         <br />
 
                         <!--Transport Method-->
                         <label for="transport-method" class="bold-label">Transport Method:</label>
 
                         <label for="assisted">Assisted</label>
-                        <input id="assisted" name="transport-method" value="assisted" type="radio">
+                        <input id="assisted" name="transport-method" value="assisted" type="radio" checked>
 
                         <label for="stairchair">Stairchair</label>
                         <input id="stairchair" name="transport-method" value="stairchair" type="radio">
@@ -154,15 +210,15 @@
                         
                         <!--Destination-->
                         <label for="destination" class="bold-label">Destination:</label>
-                        <input type="text" id="destination" name="destination">
+                        <input type="text" id="destination" name="destination" value="OMC">
                         
                         <label for="bed" class="bold-label">Bed:</label>
-                        <input type="text" id="bed" name="bed">
+                        <input type="text" id="bed" name="bed" value="the hospital bed">
                         <br />
 
                         <!--RN Name-->
                         <label for="rn-name" class="bold-label">RN:</label>
-                        <input type="text" id="rn-name" name="rn-name">
+                        <input type="text" id="rn-name" name="rn-name" value=" ">
                     </div>
 
                     <br /><br />
@@ -186,5 +242,6 @@
 
 
         </section>
+        <h3>Z. Cartnick 2025</h3>
     </body>
 </html>

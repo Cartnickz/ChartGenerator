@@ -6,6 +6,7 @@ html {
 .bold-label {
     font-weight: bold;
     font-size: 1.12rem;
+    display: inline;
 }
 
 .gen-output {

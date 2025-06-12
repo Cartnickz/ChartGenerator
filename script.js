@@ -1,9 +1,6 @@
 
 let generateButton = document.getElementById('generate-chart');
 let resetGenButton = document.getElementById('reset-chart-gen');
-let errorLine = document.getElementById('error-output');
-
-
 
 function updateBox() {
     // Reset output box
@@ -32,7 +29,7 @@ function updateBox() {
             sex = ''
         }
     } else {
-        errorLine += "Missing input: " + 'sex' + "<br />"
+        document.getElementById('error-output').innerHTML += "Missing input: " + 'sex' + "<br />"
     }
 
     let pronouns = []
@@ -77,6 +74,7 @@ function updateBox() {
 
 }
 
+
 function resetBox() {
     let outputLines = document.getElementsByClassName('gen-output');
     for (i = 0; i < outputLines.length; i++) {
@@ -87,11 +85,29 @@ function resetBox() {
     resetGenButton.innerHTML = "Chart has been reset..";
 }
 
+
 function seekInput(input) {
     if (input.value) {
         return input.value
     } else {
         document.getElementById('error-output').innerHTML += "Missing input: " + input.name + "<br />";
+    }
+}
+
+
+function rotateButton(button, names) {
+    let currentIndex = names.indexOf(button.innerHTML);
+    if (currentIndex !== -1) {
+        // get length of list
+        let length = names.length;
+        // increment index (unless at end of array, then start over)
+        if (currentIndex + 1 === length) {
+            button.innerHTML = names[0];
+        } else {
+            button.innerHTML = names[currentIndex + 1];
+        }
+    } else {
+        document.getElementById('error-output').innerHTML += "Button value not in array: " + button.id + "<br />";
     }
 }
 
@@ -150,6 +166,7 @@ function determineAVPU() {
 
 }
 
+
 function determinePosition() {
     let positionSelect = document.querySelector('input[name="position"]:checked');
     
@@ -171,6 +188,7 @@ function determinePosition() {
 
 
 }
+
 
 function getALSStatus() {
     let ALSSelect = document.querySelector('input[name="ALS"]:checked');
@@ -196,13 +214,13 @@ function getALSStatus() {
     }
 }
 
+
 function getTransportOutput(unit, pronouns) {
     let transportDecision = document.querySelector('input[name="transport-decision"]:checked');
     let transportMethod = document.querySelector('input[name="transport-method"]:checked');
     let destination = seekInput(document.getElementById('destination'));
     let bed = seekInput(document.getElementById('bed'));
-    let rnName = seekInput(document.getElementById('rn-name'));
-
+    let rnName = " " + seekInput(document.getElementById('rn-name'));
     let transportOutput = ''
 
     if (transportDecision) {
@@ -237,7 +255,7 @@ function getTransportOutput(unit, pronouns) {
                 transportOutput += `<br /><br />En route to ${destination}, the patient was continuously monitored and reassessed. The patient had no new complaints.`
 
                 // at destination
-                transportOutput += `<br /><br />At ${destination}, the patient was transferred to bed ${bed} without incident. Both side rails were raised. Patient care was transferred to RN ${rnName} with report.`
+                transportOutput += `<br /><br />At ${destination}, the patient was transferred to ${bed} without incident. Both side rails were raised. Patient care was transferred to ${destination} RN${rnName} with report.`
 
                 return transportOutput
             
@@ -249,5 +267,47 @@ function getTransportOutput(unit, pronouns) {
     }
 }
 
+
+
+
+
+// BUTTONS ------------------------------------------------------------
+// Skin Condition Buttons 
+document.getElementById('skin-temperature').onclick = () => 
+    rotateButton(document.getElementById('skin-temperature'), ['Normal Temperature', 'Hot', 'Cool']);
+document.getElementById('skin-color').onclick = () => 
+    rotateButton(document.getElementById('skin-color'), ['Normal Color', 'Pale', 'Cyanotic', 'Jaundiced']);
+document.getElementById('skin-moisture').onclick = () => 
+    rotateButton(document.getElementById('skin-moisture'), ['Normal Moisture', 'Diaphoretic']);
+document.getElementById('skin-moisture').onclick = () => 
+    rotateButton(document.getElementById('skin-moisture'), ['Normal Moisture', 'Diaphoretic']);
+
+// Radial Pulses Buttons
+document.getElementById('radial-strength').onclick = () => 
+    rotateButton(document.getElementById('radial-strength'), ['Strong', 'Weak', 'Bounding']);
+document.getElementById('radial-regularity').onclick = () => 
+    rotateButton(document.getElementById('radial-regularity'), ['Regularly Regular', 'Regularly Irregular ', 'Irregularly Irregular']);
+document.getElementById('radial-rate').onclick = () => 
+    rotateButton(document.getElementById('radial-rate'), ['Normal Rate', 'Bradycardic', 'Tachycardic']);
+document.getElementById('radial-equal').onclick = () => 
+    rotateButton(document.getElementById('radial-equal'), ['Equal Bilaterally', 'Not Equal Bilaterally']);
+
+// Respiration Buttons
+document.getElementById('respiration-rate').onclick = () => 
+    rotateButton(document.getElementById('respiration-rate'), ['Regular Rate', 'Slow', 'Rapid']);
+document.getElementById('respiration-depth').onclick = () => 
+    rotateButton(document.getElementById('respiration-depth'), ['Regular Depth', 'Shallow', 'Deep']);
+document.getElementById('respiration-rhythm').onclick = () => 
+    rotateButton(document.getElementById('respiration-rhythm'), ['Regular Rhythm', 'Irregular Rhythm']);
+
+// Lung Sounds Buttons
+document.getElementById('left-lung-sound').onclick = () => 
+    rotateButton(document.getElementById('left-lung-sound'), ['Left - Clear', 'Left - Diminished', 'Left - Wheeze', 'Left - Rales', 'Left - Rhonchi']);
+document.getElementById('right-lung-sound').onclick = () => 
+    rotateButton(document.getElementById('right-lung-sound'), ['Right - Clear', 'Right - Diminished', 'Right - Wheeze', 'Right - Rales', 'Right - Rhonchi']);
+
+// Update Box and Reset Buttons
 generateButton.onclick = updateBox;
 resetGenButton.onclick = resetBox;
+
+// ----------------------------------------
