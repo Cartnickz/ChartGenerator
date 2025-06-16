@@ -43,7 +43,7 @@ input {
 
 button {
     color: white;
-    background-color: #141414;
+    background-color: #3d3d3d;
     border: none;
     padding: 5px 5px;
     margin: 3px 3px;
@@ -53,7 +53,7 @@ button {
 }
 
 button:hover {
-    background-color: #3d3d3d;
+    background-color: #141414;
 }
 
 .fields {
