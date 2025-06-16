@@ -23,7 +23,6 @@ html {
 .select-box {
     display: inline-block;
     margin-right: 10px;
-    align-items: center;
     height: 18px;
 }
 
@@ -66,7 +65,8 @@ button:hover {
 
 .container {
     margin: 0px auto 0px auto;
-    width: 80%;
+    width: 70%;
+    min-width: 500px;
 }
 
 
@@ -88,4 +88,16 @@ footer {
 
 footer h3 {
     text-align: center;
+}
+
+.custom-textarea {
+    width: 95%;
+    height: 100px;
+    margin: 10px auto 0px auto;
+    color: white;
+    background-color: #1f1f1f;
+    border-radius: 5px;
+    border-color: #444444;
+    border-width: 1px;
+    padding: 10px 10px;
 }

@@ -53,7 +53,7 @@ function updateBox() {
     let positionOutput = `${positionSelect}`;
     let locationOutput = ' ' + location;
     let attendedByOutput = '';
-    let otherSceneInfo = document.getElementById('other-scene-info').value;
+    let otherSceneInfo = document.getElementById('other-scene-info').innerHTML;
 
     if (attendedBy) { attendedByOutput = ' attended by ' + attendedBy; }
 
@@ -75,12 +75,17 @@ function updateBox() {
     let radialOutput = determineRadialOutput();
     let respOutput = determineRespiratoryOutput();
     let bpOutput = determineBP();
+    let otherExamInfo = document.getElementById('other-exam-info').innerHTML;
 
     document.getElementById('exam-output').innerHTML = skinOutput + radialOutput
         + respOutput + bpOutput;
 
     if (document.getElementById('trauma-present').checked) {
         document.getElementById('exam-output').innerHTML += determineTrauma();
+    }
+
+    if (otherExamInfo) {
+        document.getElementById('exam-output').innerHTML += "<br /><br />" + otherExamInfo;
     }
 
 
@@ -129,7 +134,7 @@ function determineHPIOutput() {
         hpiOutput += "The patient is complaining of " + listItems(positiveSymptoms) +  ". ";
     }
 
-    hpiOutput += document.getElementById('hpi-other').value + " ";
+    hpiOutput += document.getElementById('hpi-other').innerHTML + " ";
 
     if (negativeSymptoms.length > 0 && document.getElementById('report-symptoms').checked) {
         hpiOutput += "The patient denies " + listItems(negativeSymptoms) + ". ";
@@ -144,7 +149,6 @@ function determineSkinOutput() {
     let skinTemperature = document.getElementById('skin-temperature').innerHTML.toLowerCase();
     let skinColor = document.getElementById('skin-color').innerHTML.toLowerCase();
     let skinMoisture = document.getElementById('skin-moisture').innerHTML.toLowerCase();
-    let skinCondition = document.getElementById('skin-condition').value;
 
     let skinOutput = "On exam, the patient's skin was found to be ";
 
@@ -170,7 +174,7 @@ function determineSkinOutput() {
         }
     }
 
-    return skinOutput + skinCondition;
+    return skinOutput;
 }
 
 function determineRadialOutput() {
@@ -333,7 +337,7 @@ function determineTrauma() {
         }
     })
 
-    traumaOutput += document.getElementById('trauma-desc').value + " ";
+    traumaOutput += document.getElementById('trauma-desc').innerHTML + " ";
 
     if (negativeDCAP.length > 0 && document.getElementById('trauma-present').checked) {
         traumaOutput += "No DCAP-BTLS noted to " + listItems(negativeDCAP) + ". ";
@@ -526,7 +530,7 @@ function getTransportOutput(unit, pronouns) {
     let destination = seekInput(document.getElementById('destination'));
     let bed = seekInput(document.getElementById('bed'));
     let rnName = " " + seekInput(document.getElementById('rn-name'));
-    let transportDescription = document.getElementById('transport-desc').value;
+    let transportDescription = document.getElementById('transport-desc').innerHTML;
     let transportOutput = ''
 
     if (transportDecision) {

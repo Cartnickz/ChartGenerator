@@ -50,14 +50,25 @@
 
                             <!--AVPU-->
                             <label for="AVPU" class="bold-label">Level of Consciousness:</label>
-                            <label for="alert">A</label>
-                            <input type="radio" id="alert" name="AVPU" value="alert" checked>
-                            <label for="verbal">V</label>
-                            <input type="radio" id="verbal" name="AVPU" value="verbal">
-                            <label for="painful">P</label>
-                            <input type="radio" id="painful" name="AVPU" value="painful">
-                            <label for="unresponsive">U</label>
-                            <input type="radio" id="unresponsive" name="AVPU" value="unresponsive">
+                            <div class="select-box">
+                                <label for="alert">A</label>
+                                <input type="radio" id="alert" name="AVPU" value="alert" checked>
+                            </div>
+
+                            <div class="select-box">
+                                <label for="verbal">V</label>
+                                <input type="radio" id="verbal" name="AVPU" value="verbal">
+                            </div>
+
+                            <div class="select-box">
+                                <label for="painful">P</label>
+                                <input type="radio" id="painful" name="AVPU" value="painful">
+                            </div>
+
+                            <div class="select-box">
+                                <label for="unresponsive">U</label>
+                                <input type="radio" id="unresponsive" name="AVPU" value="unresponsive">
+                            </div>
                             <br />
 
                             <!--Orientation-->
@@ -87,20 +98,30 @@
                             <!--Position-->
                             <label for="position" class="bold-label">Position:</label>
                             
-                            <label for="sitting-position">Sitting</label>
-                            <input id="sitting-position" name="position" value="sitting-position" type="radio">
+                            <div class="select-box">
+                                <label for="sitting-position">Sitting</label>
+                                <input id="sitting-position" name="position" value="sitting-position" type="radio">
+                            </div>
 
-                            <label for="sitting-position">Standing</label>
-                            <input id="standing-position" name="position" value="standing-position" type="radio">
+                            <div class="select-box">
+                                <label for="sitting-position">Standing</label>
+                                <input id="standing-position" name="position" value="standing-position" type="radio">
+                            </div>
 
-                            <label for="supine-position">Supine</label>
-                            <input id="supine-position" name="position" value="supine-position" type="radio">
+                            <div class="select-box">
+                                <label for="supine-position">Supine</label>
+                                <input id="supine-position" name="position" value="supine-position" type="radio">
+                            </div>
 
-                            <label for="L-lateral-position">L-Lateral</label>
-                            <input id="L-Lateral-position" name="position" value="L-lateral-position" type="radio">
+                            <div class="select-box">
+                                <label for="L-lateral-position">L-Lateral</label>
+                                <input id="L-Lateral-position" name="position" value="L-lateral-position" type="radio">
+                            </div>
 
-                            <label for="R-lateral-position">R-Lateral</label>
-                            <input id="R-Lateral-position" name="position" value="R-lateral-position" type="radio">
+                            <div class="select-box">
+                                <label for="R-lateral-position">R-Lateral</label>
+                                <input id="R-Lateral-position" name="position" value="R-lateral-position" type="radio">
+                            </div>
                             <br />
 
                             <!--Location-->
@@ -117,7 +138,7 @@
                             <!--Other Scene Information-->
                             <label for="other-scene-info" class="bold-label">Other Scene Info:</label>
                             <br />
-                            <textarea id="other-scene-info" name="other-scene-info" rows="4" cols="100"></textarea> 
+                            <div id="other-scene-info" class="custom-textarea" contenteditable="plaintext-only"></div> 
 
                             <br />
 
@@ -169,8 +190,6 @@
                                     <input type="checkbox" id="dizziness" name="symptoms" value="dizziness">
                                 </div>
 
-                                <br />
-
                                 <div class="select-box">
                                     <label for="fever">Fever</label>
                                     <input type="checkbox" id="fever" name="symptoms" value="fever">
@@ -208,7 +227,7 @@
                             </div>
                             <label for="hpi-other">Other HPI Information:</label>
                             <br />
-                            <textarea id="hpi-other" name="hpi-other" rows="4" cols="100"></textarea>
+                            <div contenteditable="plaintext-only" class="custom-textarea" id="hpi-other"></div>
                             <br />
                         </div>
                     </div>
@@ -221,7 +240,6 @@
                             <button type="button" id="skin-temperature">Normal Temperature</button>
                             <button type="button" id="skin-color">Normal Color</button>
                             <button type="button" id="skin-moisture">Normal Moisture</button>
-                            <input id="skin-condition" name="skin-condition" type="text"></input>
                             <br />
 
                             <!--Radial Pulse-->
@@ -230,7 +248,6 @@
                             <button type="button" id="radial-regularity">Regularly Regular</button>
                             <button type="button" id="radial-rate">Normal Rate</button>
                             <button type="button" id="radial-equal">Equal Bilaterally</button>
-                            <input id="radial-pulses" name="radial-pulses" type="text"></input>
                             <br />
 
                             <!--Respiratory-->
@@ -242,7 +259,9 @@
                                 <label for="resp-muscle-use">Accessory Muscles</label>
                                 <input id="resp-muscle-use" name="resp-muscle-use" type="checkbox">
                             </div>
-                            <label for="resp-dyspnea">Dyspnea:</label>
+
+                            <br />
+                            <label for="resp-dyspnea">Dyspnea (in words/breath):</label>
                             <input id="resp-dyspnea" name="resp-dyspnea" type="text">
                             <br />
                             
@@ -265,13 +284,13 @@
                             <div class="select-box">
                                 <label for="room-air-O2">Room Air?</label>
                                 <input id="room-air-O2" name="room-air-O2" type="checkbox" checked>
-                                <br />
                             </div>
+                            <br />
 
                             <!--BP-->
                             <label for="bp" class="bold-label">Blood Pressure:</label>
                             <input id="bp" name="bp" type="text">
-                            <br />
+                            <br /><br />
 
                             <!--Trauma-->
                             <p class="bold-label">Trauma:</p>
@@ -279,9 +298,9 @@
                             <label for="trauma-present">Trauma Present?:</label>
                             <input type="checkbox" id="trauma-present" name="trauma-present">
                             <br />
-                            <label for="trauma-desc">Trauma Description:</label>
+                            <label for="trauma-desc">Description:</label>
                             <br />
-                            <textarea id="trauma-desc" name="trauma-desc" rows="3" cols="100"></textarea>
+                            <div id="trauma-desc" class="custom-textarea" contenteditable="plaintext-only"></div>
                             
                             <br />
                             <label for="neg-DCAP-BTLS">Negative DCAP-BTLS:</label>
@@ -327,12 +346,12 @@
                                 <input type="checkbox" id="lower-ext-dcap" name="neg-DCAP-BTLS" value="lower-ext" checked>
                             </div>
 
-                            <br />
+                            <br /><br />
                             
                             <!--Other Information-->
                             <label for="other-exam" class="bold-label">Other Exam Info/Interventions:</label>
                             <br />
-                            <textarea id="other-exam-info" name="other-exam-info" rows="4" cols="100"></textarea>
+                            <div id="other-exam-info" class="custom-textarea" contenteditable="plaintext-only"></div>
                             <br />
 
                         </div>
@@ -420,7 +439,7 @@
                             <br />
                             <label for="transport-desc" class="bold-label">Transport Update:</label>
                             <br />
-                            <textarea id="transport-desc" name="transport-desc" rows="4" cols="100"></textarea>
+                            <div id="transport-desc" class="custom-textarea" contenteditable="plaintext-only"></div>
                             <br />
 
                             <!--RN Name-->
