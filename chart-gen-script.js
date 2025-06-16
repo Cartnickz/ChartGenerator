@@ -363,7 +363,7 @@ function determineBP() {
         } else if (systolic > 140 && diastolic > 80) {
             bpOutput += `The patient's blood pressure was obtained and found to be elevated at ${bp} mm Hg. `
         } else {
-            bpOutput += `The patient's blood pressure was obtained.`
+            bpOutput += `The patient's blood pressure was obtained. `
             if (systolic > 140) {
                bpOutput += `The patient's systolic blood pressure was found to be elevated at ${systolic} mm Hg. `
             }
@@ -588,7 +588,7 @@ function listItems(array) {
     if (array.length === 1) {
         return array[0];
     } else if (array.length === 2) {
-        return array[0]
+        return array[0] + " and " + array[1];
     } else if (array.length > 2) {
         items = array[0]
         for (let i = 1; i < array.length - 1; i++) {
