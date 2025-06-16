@@ -85,3 +85,7 @@ input[type="radio"]:checked {
 footer {
     color:#141414;
 }
+
+footer h3 {
+    text-align: center;
+}
