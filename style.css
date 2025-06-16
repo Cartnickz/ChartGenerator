@@ -16,3 +16,8 @@ html {
 #error-output {
     color: red;
 }
+
+.select-box {
+    display: inline;
+    margin-right: 10px;
+}

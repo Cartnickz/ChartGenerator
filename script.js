@@ -59,6 +59,10 @@ function updateBox() {
     document.getElementById('scene-output').innerHTML = sceneOutput + positionOutput 
     + locationOutput + attendedByOutput + ".";
 
+    // HPI
+    let HPIOutput = determineHPIOutput();
+    document.getElementById('hpi-output').innerHTML = HPIOutput;
+
     // Exam
     let skinOutput = determineSkinOutput();
     let radialOutput = determineRadialOutput();
@@ -68,6 +72,10 @@ function updateBox() {
     document.getElementById('exam-output').innerHTML = skinOutput + radialOutput
         + respOutput + bpOutput;
 
+    if (document.getElementById('trauma-present').checked) {
+        document.getElementById('exam-output').innerHTML += determineTrauma();
+    }
+
 
     // ALS
     let alsOutput = getALSStatus();
@@ -76,9 +84,53 @@ function updateBox() {
     // Transport
     let transportOutput = getTransportOutput(unit, pronouns);
     document.getElementById('transport-output').innerHTML = transportOutput;
-
-
 }
+
+
+function determineHPIOutput() {
+    let symptomsObject = {
+        'chest pain': document.getElementById('chest-pain').checked,
+        'shortness of breath': document.getElementById('sob').checked,
+        'headache': document.getElementById('headache').checked,
+        'nausea': document.getElementById('nausea').checked,
+        'vomiting': document.getElementById('vomiting').checked,
+        'lightheadedness': document.getElementById('lightheadedness').checked,
+        'dizziness': document.getElementById('dizziness').checked,
+        'fever': document.getElementById('fever').checked,
+        'chills': document.getElementById('chills').checked,
+        'abdominal pain': document.getElementById('abd-pain').checked,
+        'weakness': document.getElementById('weakness').checked,
+        'recent falls': document.getElementById('recent-falls').checked,
+        'recent travel': document.getElementById('recent-travel').checked,
+        'any other pain': document.getElementById('other-pain').checked
+    }
+
+    let hpiOutput = "";
+
+    let positiveSymptoms = [];
+    let negativeSymptoms = [];
+
+    Object.keys(symptomsObject).forEach(key => {
+        if (symptomsObject[key]) {
+            positiveSymptoms.push(key);
+        } else {
+            negativeSymptoms.push(key);
+        }
+    })
+    
+    if (positiveSymptoms.length > 0 && document.getElementById('report-symptoms').checked) {
+        hpiOutput += "The patient is complaining of " + listItems(positiveSymptoms) +  ". ";
+    }
+
+    hpiOutput += document.getElementById('hpi-other').value + " ";
+
+    if (negativeSymptoms.length > 0 && document.getElementById('report-symptoms').checked) {
+        hpiOutput += "The patient denies " + listItems(negativeSymptoms) + ". ";
+    }
+
+    return hpiOutput;
+}
+
 
 
 function determineSkinOutput() {
@@ -132,8 +184,6 @@ function determineRadialOutput() {
         } else {
             radialOutput += radialRate + ", and " + radialEqual + ". ";
         }
-        
-        radialRate 
     }
 
     return radialOutput;
@@ -162,7 +212,7 @@ function determineRespiratoryOutput() {
         respOutput += "The patient did not appear to be breathing. "
     } else {
         if (respDistress) {
-            respOutput += "The patient appeared to be respiratory distress. " 
+            respOutput += "The patient appeared to be in respiratory distress. " 
             respMuscles ? respOutput += "Accessory muscle use noted. " : respOutput += "No accessory muscle use noted. ";
             
             if (respDysneaCount) {
@@ -195,7 +245,7 @@ function determineRespiratoryOutput() {
             }
 
         } else {
-            respOutput += "The patient did not appear to be respiratory distress. " 
+            respOutput += "The patient did not appear to be in respiratory distress. " 
             + "No accessory muscle use noted. The patient was able to speak in full and complete sentences. "
             + "Respirations were found to be regular in rate, depth, and rhythm. ";
         }
@@ -256,6 +306,43 @@ function determineRespiratoryOutput() {
     return respOutput;
 }
 
+function determineTrauma() {
+    let traumaList = {
+        'head': document.getElementById('head-dcap').checked,
+        'neck': document.getElementById('neck-dcap').checked,
+        'chest': document.getElementById('chest-dcap').checked,
+        'abdomen': document.getElementById('abdomen-dcap').checked,
+        'back': document.getElementById('back-dcap').checked,
+        'pelvis': document.getElementById('pelvis-dcap').checked,
+        'upper extremities': document.getElementById('upper-ext-dcap').checked,
+        'lower extremities': document.getElementById('lower-ext-dcap').checked
+    }
+
+    let positiveDCAP = [];
+    let negativeDCAP = [];
+
+    let traumaOutput = [];
+
+    Object.keys(traumaList).forEach(key => {
+        if (traumaList[key]) {
+            negativeDCAP.push(key);
+        } else {
+            positiveDCAP.push(key);
+        }
+    })
+
+    traumaOutput += document.getElementById('trauma-desc').value + " ";
+
+    if (negativeDCAP.length > 0 && document.getElementById('trauma-present').checked) {
+        traumaOutput += "No DCAP-BTLS noted to " + listItems(negativeDCAP) + ". ";
+    }
+
+    return traumaOutput;
+
+
+
+}
+
 
 function determineBP() {
     let bp = document.getElementById('bp').value.toLowerCase();
@@ -270,7 +357,7 @@ function determineBP() {
         } else if (systolic > 140 && diastolic > 80) {
             bpOutput += `The patient's blood pressure was obtained and found to be elevated at ${bp} mm Hg. `
         } else {
-            bpOutput += `The patient's blood pressure was obtained. `
+            bpOutput += `The patient's blood pressure was obtained.`
             if (systolic > 140) {
                bpOutput += `The patient's systolic blood pressure was found to be elevated at ${systolic} mm Hg. `
             }
@@ -345,7 +432,7 @@ function determineAVPU() {
         };
         let orientationTrue = [];
 
-        let orientationCount = 0
+        let orientationCount = 0;
         Object.keys(orientation).forEach(question => {
             if (orientation[question]) {
                 orientationCount++;
@@ -403,8 +490,6 @@ function determinePosition() {
     } else {
         document.getElementById('error-output').innerHTML += "Missing input: position<br />";
     }
-
-
 }
 
 
@@ -483,6 +568,24 @@ function getTransportOutput(unit, pronouns) {
     } else {
         document.getElementById('error-output').innerHTML += "Missing input: transport decision"
     }
+}
+
+function listItems(array) {
+    let items = "";
+    if (array.length === 1) {
+        return array[0];
+    } else if (array.length === 2) {
+        return array[0]
+    } else if (array.length > 2) {
+        items = array[0]
+        for (let i = 1; i < array.length - 1; i++) {
+            items += ", " + array[i];
+        }
+        items += ", and " + array[array.length - 1];
+
+        return items;
+    }
+
 }
 
 
