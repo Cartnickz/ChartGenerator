@@ -1,5 +1,7 @@
 html {
+    background-color: #1f1f1f;
     font-family: Arial, Helvetica, sans-serif;
+    color: #dedede;
     font-size: 16px;
 }
 
@@ -11,6 +13,7 @@ html {
 
 .gen-output {
     font-family: 'Courier New', Courier, monospace;
+    padding-left: 10px;
 }
 
 #error-output {
@@ -18,6 +21,67 @@ html {
 }
 
 .select-box {
-    display: inline;
+    display: inline-block;
     margin-right: 10px;
+    align-items: center;
+    height: 18px;
+}
+
+textarea {
+    color: white;
+    background-color: #1f1f1f;
+    border: none;
+}
+
+input {
+    color: white;
+    background-color: #1f1f1f;
+    border: none;
+    padding: 4px 4px;
+    margin: 2px 2px;
+    border-radius: 3px;
+}
+
+button {
+    color: white;
+    background-color: #141414;
+    border: none;
+    padding: 5px 5px;
+    margin: 3px 3px;
+    border-radius: 3px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    transition: 0.3;
+}
+
+button:hover {
+    background-color: #3d3d3d;
+}
+
+.fields {
+    background-color: #333333;
+    padding: 10px 10px 10px 10px;
+    border-radius: 5px;
+
+}
+
+.container {
+    margin: 0px auto 0px auto;
+    width: 70%;
+}
+
+
+input[type="radio"] {
+    border: 2px solid black;
+    border-radius: 50%;
+    outline: none;
+    background-color: white;
+    cursor: pointer;
+}
+
+input[type="radio"]:checked {
+    background-color: grey;
+}
+
+footer {
+    color:#141414;
 }

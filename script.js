@@ -211,8 +211,6 @@ function determineRespiratoryOutput() {
     let spo2Value = document.getElementById('spo2-value').value.toLowerCase();
     let roomAir = document.getElementById('room-air-O2').checked;
 
-    let other = document.getElementById('respiratory-other').value;
-
     let respOutput = "";
 
     if (respRate === 'apnic') {
@@ -306,10 +304,7 @@ function determineRespiratoryOutput() {
 
         roomAir ? respOutput += " at room air. " : respOutput += ". "
     }
-
-    if (other) {
-        respOutput += " " + other;
-    }
+    
     return respOutput;
 }
 

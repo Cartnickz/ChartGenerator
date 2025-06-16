@@ -7,428 +7,455 @@
         <script src="./script.js" defer></script>
     </head>
     <body>
-        <header>
+        <header class="container">
             <h1>Chart Generator v1.0</h1>
         </header>
         <section id="site-body">
             <div id="Form-Container">
-                <h2>Scene Info:</h2>
                 <form id="Form">
-                    <div id="scene-size-up-fields">
-                        <!--Unit-->
-                        <label for="unit" class="bold-label">Unit:</label>
-                        <input type="text" id="unit" name="unit"/>
-                        <br />
-
-                        <!--Nature-->
-                        <label for="nature" class="bold-label">Nature:</label>
-                        <input type="text" id="nature" name="nature"/>
-                        <br />
-
-                        <!--Age-->
-                        <label for="age" class="bold-label">Patient Age:</label>
-                        <input type="text" id="age" name="age"/>
-
-                        <!--Sex-->
-                        <label for="sex" class="bold-label">Sex:</label>
-
-                        <div class="select-box">
-                            <label for="male">M</label>
-                            <input type="radio" id="male" name="sex" value="male">
-                        </div>
-                        <div class="select-box">
-                            <label for="female">F</label>
-                            <input type="radio" id="female" name="sex" value="female">
-                        </div>
-                        <div class="select-box">
-                            <label for="other">Other</label>
-                            <input type="radio" id="other" name="sex" value="other">
-                        </div>
-                        <br />
-
-                        <!--AVPU-->
-                        <label for="AVPU" class="bold-label">Level of Consciousness:</label>
-                        <label for="alert">A</label>
-                        <input type="radio" id="alert" name="AVPU" value="alert" checked>
-                        <label for="verbal">V</label>
-                        <input type="radio" id="verbal" name="AVPU" value="verbal">
-                        <label for="painful">P</label>
-                        <input type="radio" id="painful" name="AVPU" value="painful">
-                        <label for="unresponsive">U</label>
-                        <input type="radio" id="unresponsive" name="AVPU" value="unresponsive">
-                        <br />
-
-                        <!--Orientation-->
-                        <label for="orientation" class="bold-label">Orientation:</label>
-
-                        <div class="select-box">
-                            <label for="person-orientation">Person</label>
-                            <input id="person-orientation" name="orientation" value="person-orientation" type="checkbox" checked>
-                        </div>
-
-                        <div class="select-box">
-                            <label for="place-orientation">Place</label>
-                            <input id="place-orientation" name="orientation" value="place-orientation" type="checkbox" checked>
-                        </div>
-
-                        <div class="select-box">
-                            <label for="time-orientation">Time</label>
-                            <input id="time-orientation" name="orientation" value="time-orientation" type="checkbox" checked>
-                        </div>
-
-                        <div class="select-box">
-                            <label for="event-orientation">Event</label>
-                            <input id="event-orientation" name="orientation" value="event-orientation" type="checkbox" checked>
-                        </div>
-                        <br />
-
-                        <!--Position-->
-                        <label for="position" class="bold-label">Position:</label>
-                        
-                        <label for="sitting-position">Sitting</label>
-                        <input id="sitting-position" name="position" value="sitting-position" type="radio">
-
-                        <label for="sitting-position">Standing</label>
-                        <input id="standing-position" name="position" value="standing-position" type="radio">
-
-                        <label for="supine-position">Supine</label>
-                        <input id="supine-position" name="position" value="supine-position" type="radio">
-
-                        <label for="L-lateral-position">L-Lateral</label>
-                        <input id="L-Lateral-position" name="position" value="L-lateral-position" type="radio">
-
-                        <label for="R-lateral-position">R-Lateral</label>
-                        <input id="R-Lateral-position" name="position" value="R-lateral-position" type="radio">
-                        <br />
-
-                        <!--Location-->
-                        <label for="location" class="bold-label">Location:</label>
-                        <input type="text" id="location" name="location">
-                        <br />
-
-                        <!--Accompanied By-->
-                        <label for="bystanders" class="bold-label">Bystanders:</label>
-                        <input type="text" id="bystanders" name="bystanders">
-                        <br />
-
-
-                        <!--Other Scene Information-->
-                        <label for="other-scene-info" class="bold-label">Other Scene Info:</label>
-                        <br />
-                        <textarea id="other-scene-info" name="other-scene-info" rows="4" cols="100"></textarea> 
-
-                        <br /><br />
-
-                    </div>
-
-                    <div id="HPI">
-                        <h2>HPI:</h2>
-
-                        <!--Symptoms-->
-                        <div id="symptoms-boxes">
-                            <label for="symptoms" class="bold-label">Symptoms:</label>
-                            <label for="report-symptoms">Report?</label>
-                            <input type="checkbox" id="report-symptoms" name="report-symptoms" value="report-symptoms" checked>
+                    <div class="container">
+                        <h2>Scene Info:</h2>
+                        <div id="scene-size-up-fields" class="fields">
+                            <!--Unit-->
+                            <label for="unit" class="bold-label">Unit:</label>
+                            <input type="text" id="unit" name="unit"/>
                             <br />
 
-                            <div class="select-box"> 
-                                <label for="chest-pain">Chest Pain</label>
-                                <input type="checkbox" id="chest-pain" name="symptoms" value="chest-pain">
+                            <!--Nature-->
+                            <label for="nature" class="bold-label">Nature:</label>
+                            <input type="text" id="nature" name="nature"/>
+                            <br />
+
+                            <!--Age-->
+                            <label for="age" class="bold-label">Patient Age:</label>
+                            <input type="text" id="age" name="age"/>
+                            <br />
+
+                            <!--Sex-->
+                            <label for="sex" class="bold-label">Sex:</label>
+
+                            <div class="select-box">
+                                <label for="male">M</label>
+                                <input type="radio" id="male" name="sex" value="male">
+                            </div>
+                            <div class="select-box">
+                                <label for="female">F</label>
+                                <input type="radio" id="female" name="sex" value="female">
+                            </div>
+                            <div class="select-box">
+                                <label for="other">Other</label>
+                                <input type="radio" id="other" name="sex" value="other">
+                            </div>
+                            <br />
+
+                            <!--AVPU-->
+                            <label for="AVPU" class="bold-label">Level of Consciousness:</label>
+                            <label for="alert">A</label>
+                            <input type="radio" id="alert" name="AVPU" value="alert" checked>
+                            <label for="verbal">V</label>
+                            <input type="radio" id="verbal" name="AVPU" value="verbal">
+                            <label for="painful">P</label>
+                            <input type="radio" id="painful" name="AVPU" value="painful">
+                            <label for="unresponsive">U</label>
+                            <input type="radio" id="unresponsive" name="AVPU" value="unresponsive">
+                            <br />
+
+                            <!--Orientation-->
+                            <label for="orientation" class="bold-label">Orientation:</label>
+
+                            <div class="select-box">
+                                <label for="person-orientation">Person</label>
+                                <input id="person-orientation" name="orientation" value="person-orientation" type="checkbox" checked>
                             </div>
 
                             <div class="select-box">
-                                <label for="chest-pain">Shortness of Breath</label>
-                                <input type="checkbox" id="sob" name="symptoms" value="sob">
+                                <label for="place-orientation">Place</label>
+                                <input id="place-orientation" name="orientation" value="place-orientation" type="checkbox" checked>
                             </div>
 
                             <div class="select-box">
-                                <label for="nausea">Headache</label>
-                                <input type="checkbox" id="headache" name="symptoms" value="headache">
+                                <label for="time-orientation">Time</label>
+                                <input id="time-orientation" name="orientation" value="time-orientation" type="checkbox" checked>
                             </div>
 
                             <div class="select-box">
-                                <label for="nausea">Nausea</label>
-                                <input type="checkbox" id="nausea" name="symptoms" value="nausea">
+                                <label for="event-orientation">Event</label>
+                                <input id="event-orientation" name="orientation" value="event-orientation" type="checkbox" checked>
                             </div>
+                            <br />
+
+                            <!--Position-->
+                            <label for="position" class="bold-label">Position:</label>
                             
-                            <div class="select-box">
-                                <label for="vomiting">Vomiting</label>
-                                <input type="checkbox" id="vomiting" name="symptoms" value="vomiting">
-                            </div>
+                            <label for="sitting-position">Sitting</label>
+                            <input id="sitting-position" name="position" value="sitting-position" type="radio">
 
-                            <div class="select-box">
-                                <label for="lightheadedness">Lightheadedness</label>
-                                <input type="checkbox" id="lightheadedness" name="symptoms" value="lightheadedness">
-                            </div>
+                            <label for="sitting-position">Standing</label>
+                            <input id="standing-position" name="position" value="standing-position" type="radio">
 
-                            <div class="select-box">
-                                <label for="dizziness">Dizziness</label>
-                                <input type="checkbox" id="dizziness" name="symptoms" value="dizziness">
-                            </div>
+                            <label for="supine-position">Supine</label>
+                            <input id="supine-position" name="position" value="supine-position" type="radio">
+
+                            <label for="L-lateral-position">L-Lateral</label>
+                            <input id="L-Lateral-position" name="position" value="L-lateral-position" type="radio">
+
+                            <label for="R-lateral-position">R-Lateral</label>
+                            <input id="R-Lateral-position" name="position" value="R-lateral-position" type="radio">
+                            <br />
+
+                            <!--Location-->
+                            <label for="location" class="bold-label">Location:</label>
+                            <input type="text" id="location" name="location">
+                            <br />
+
+                            <!--Accompanied By-->
+                            <label for="bystanders" class="bold-label">Bystanders:</label>
+                            <input type="text" id="bystanders" name="bystanders">
+                            <br />
+
+
+                            <!--Other Scene Information-->
+                            <label for="other-scene-info" class="bold-label">Other Scene Info:</label>
+                            <br />
+                            <textarea id="other-scene-info" name="other-scene-info" rows="4" cols="100"></textarea> 
 
                             <br />
 
-                            <div class="select-box">
-                                <label for="fever">Fever</label>
-                                <input type="checkbox" id="fever" name="symptoms" value="fever">
-                            </div>
-
-                            <div class="select-box">
-                                <label for="chills">Chills</label>
-                                <input type="checkbox" id="chills" name="symptoms" value="chills">
-                            </div>
-
-                            <div class="select-box">
-                                <label for="abd-pain">Abdominal Pain</label>
-                                <input type="checkbox" id="abd-pain" name="symptoms" value="abd-pain">
-                            </div>
-
-                            <div class="select-box">
-                                <label for="weakness">Weakness</label>
-                                <input type="checkbox" id="weakness" name="symptoms" value="weakness">
-                            </div>
-
-                            <div class="select-box">
-                                <label for="recent-falls">Recent Falls</label>
-                                <input type="checkbox" id="recent-falls" name="symptoms" value="recent-falls">
-                            </div>
-
-                            <div class="select-box">
-                                <label for="recent-travel">Recent Travel</label>
-                                <input type="checkbox" id="recent-travel" name="symptoms" value="recent-travel">
-                            </div>
-
-                            <div class="select-box">
-                                <label for="recent-travel">Other Pain</label>
-                                <input type="checkbox" id="other-pain" name="symptoms" value="other-pain">
-                            </div>
                         </div>
-                        <label for="hpi-other">Other HPI Information:</label>
-                        <br />
-                        <textarea id="hpi-other" name="hpi-other" rows="4" cols="100"></textarea>
-                        <br />
-                        <br />
-
                     </div>
 
+                    <div class="container">
+                        <h2>HPI:</h2>
+                        <div id="HPI-fields" class="fields">
+                            <!--Symptoms-->
+                            <div id="symptoms-boxes">
+                                <label for="symptoms" class="bold-label">Symptoms:</label>
+                                <label for="report-symptoms">Report?</label>
+                                <input type="checkbox" id="report-symptoms" name="report-symptoms" value="report-symptoms" checked>
+                                <br />
 
-                    <div id="exam-fields">
+                                <div class="select-box"> 
+                                    <label for="chest-pain">Chest Pain</label>
+                                    <input type="checkbox" id="chest-pain" name="symptoms" value="chest-pain">
+                                </div>
+
+                                <div class="select-box">
+                                    <label for="chest-pain">Shortness of Breath</label>
+                                    <input type="checkbox" id="sob" name="symptoms" value="sob">
+                                </div>
+
+                                <div class="select-box">
+                                    <label for="nausea">Headache</label>
+                                    <input type="checkbox" id="headache" name="symptoms" value="headache">
+                                </div>
+
+                                <div class="select-box">
+                                    <label for="nausea">Nausea</label>
+                                    <input type="checkbox" id="nausea" name="symptoms" value="nausea">
+                                </div>
+                                
+                                <div class="select-box">
+                                    <label for="vomiting">Vomiting</label>
+                                    <input type="checkbox" id="vomiting" name="symptoms" value="vomiting">
+                                </div>
+
+                                <div class="select-box">
+                                    <label for="lightheadedness">Lightheadedness</label>
+                                    <input type="checkbox" id="lightheadedness" name="symptoms" value="lightheadedness">
+                                </div>
+
+                                <div class="select-box">
+                                    <label for="dizziness">Dizziness</label>
+                                    <input type="checkbox" id="dizziness" name="symptoms" value="dizziness">
+                                </div>
+
+                                <br />
+
+                                <div class="select-box">
+                                    <label for="fever">Fever</label>
+                                    <input type="checkbox" id="fever" name="symptoms" value="fever">
+                                </div>
+
+                                <div class="select-box">
+                                    <label for="chills">Chills</label>
+                                    <input type="checkbox" id="chills" name="symptoms" value="chills">
+                                </div>
+
+                                <div class="select-box">
+                                    <label for="abd-pain">Abdominal Pain</label>
+                                    <input type="checkbox" id="abd-pain" name="symptoms" value="abd-pain">
+                                </div>
+
+                                <div class="select-box">
+                                    <label for="weakness">Weakness</label>
+                                    <input type="checkbox" id="weakness" name="symptoms" value="weakness">
+                                </div>
+
+                                <div class="select-box">
+                                    <label for="recent-falls">Recent Falls</label>
+                                    <input type="checkbox" id="recent-falls" name="symptoms" value="recent-falls">
+                                </div>
+
+                                <div class="select-box">
+                                    <label for="recent-travel">Recent Travel</label>
+                                    <input type="checkbox" id="recent-travel" name="symptoms" value="recent-travel">
+                                </div>
+
+                                <div class="select-box">
+                                    <label for="recent-travel">Other Pain</label>
+                                    <input type="checkbox" id="other-pain" name="symptoms" value="other-pain">
+                                </div>
+                            </div>
+                            <label for="hpi-other">Other HPI Information:</label>
+                            <br />
+                            <textarea id="hpi-other" name="hpi-other" rows="4" cols="100"></textarea>
+                            <br />
+                        </div>
+                    </div>
+
+                    <div class="container">
                         <h2>Exam:</h2>
-                        <!--Skin Condition-->
-                        <p class="bold-label">Skin Condition:</p>
-                        <button type="button" id="skin-temperature">Normal Temperature</button>
-                        <button type="button" id="skin-color">Normal Color</button>
-                        <button type="button" id="skin-moisture">Normal Moisture</button>
-                        <input id="skin-condition" name="skin-condition" type="text"></input>
-                        <br />
+                        <div id="exam-fields" class="fields">
+                            <!--Skin Condition-->
+                            <p class="bold-label">Skin Condition:</p>
+                            <button type="button" id="skin-temperature">Normal Temperature</button>
+                            <button type="button" id="skin-color">Normal Color</button>
+                            <button type="button" id="skin-moisture">Normal Moisture</button>
+                            <input id="skin-condition" name="skin-condition" type="text"></input>
+                            <br />
 
-                        <!--Radial Pulse-->
-                        <p class="bold-label">Radial Pulses:</p>
-                        <button type="button" id="radial-strength">Strong</button>
-                        <button type="button" id="radial-regularity">Regularly Regular</button>
-                        <button type="button" id="radial-rate">Normal Rate</button>
-                        <button type="button" id="radial-equal">Equal Bilaterally</button>
-                        <input id="radial-pulses" name="radial-pulses" type="text"></input>
-                        <br />
+                            <!--Radial Pulse-->
+                            <p class="bold-label">Radial Pulses:</p>
+                            <button type="button" id="radial-strength">Strong</button>
+                            <button type="button" id="radial-regularity">Regularly Regular</button>
+                            <button type="button" id="radial-rate">Normal Rate</button>
+                            <button type="button" id="radial-equal">Equal Bilaterally</button>
+                            <input id="radial-pulses" name="radial-pulses" type="text"></input>
+                            <br />
 
-                        <!--Respiratory-->
-                        <div class="select-box">
-                            <label for="resp-distress" class="bold-label">Respiratory Distress:</label>
-                            <input id="resp-distress" name="resp-distress" type="checkbox">
+                            <!--Respiratory-->
+                            <div class="select-box">
+                                <label for="resp-distress" class="bold-label">Respiratory Distress:</label>
+                                <input id="resp-distress" name="resp-distress" type="checkbox">
+                            </div>
+                            <div class="select-box">
+                                <label for="resp-muscle-use">Accessory Muscles</label>
+                                <input id="resp-muscle-use" name="resp-muscle-use" type="checkbox">
+                            </div>
+                            <label for="resp-dyspnea">Dyspnea:</label>
+                            <input id="resp-dyspnea" name="resp-dyspnea" type="text">
+                            <br />
+                            
+
+                            <label for="respirations" class="bold-label">Respirations:</label>
+                            <button type="button" id="respiration-rate">Regular Rate</button>
+                            <button type="button" id="respiration-depth">Regular Depth</button>
+                            <button type="button" id="respiration-rhythm">Regular Rhythm</button>
+                            <br />
+
+                            <p class="bold-label">Lung Sounds:</p>
+                            <button type="button" id="left-lung-sound">Left - Clear</button>
+                            <button type="button" id="right-lung-sound">Right - Clear</button>
+                            <br />
+
+                            <!--SpO2 -->
+                            <label for="spo2-value" class="bold-label">SpO2:</label>
+                            <input id="spo2-value" name="spo2-value" type="text">
+
+                            <div class="select-box">
+                                <label for="room-air-O2">Room Air?</label>
+                                <input id="room-air-O2" name="room-air-O2" type="checkbox" checked>
+                                <br />
+                            </div>
+
+                            <!--BP-->
+                            <label for="bp" class="bold-label">Blood Pressure:</label>
+                            <input id="bp" name="bp" type="text">
+                            <br />
+
+                            <!--Trauma-->
+                            <p class="bold-label">Trauma:</p>
+                            <br />
+                            <label for="trauma-present">Trauma Present?:</label>
+                            <input type="checkbox" id="trauma-present" name="trauma-present">
+                            <br />
+                            <label for="trauma-desc">Trauma Description:</label>
+                            <br />
+                            <textarea id="trauma-desc" name="trauma-desc" rows="3" cols="100"></textarea>
+                            
+                            <br />
+                            <label for="neg-DCAP-BTLS">Negative DCAP-BTLS:</label>
+                            <br />
+
+                            <div class="select-box">
+                                <label for="neg-DCAP-BTLS">Head</label>
+                                <input type="checkbox" id="head-dcap" name="neg-DCAP-BTLS" value="head" checked>
+                            </div>
+
+                            <div class="select-box">
+                                <label for="neg-DCAP-BTLS">Neck</label>
+                                <input type="checkbox" id="neck-dcap" name="neg-DCAP-BTLS" value="neck" checked>
+                            </div>
+
+                            <div class="select-box">
+                                <label for="neg-DCAP-BTLS">Chest</label>
+                                <input type="checkbox" id="chest-dcap" name="neg-DCAP-BTLS" value="chest" checked>
+                            </div>
+
+                            <div class="select-box">
+                                <label for="neg-DCAP-BTLS">Abdomen</label>
+                                <input type="checkbox" id="abdomen-dcap" name="neg-DCAP-BTLS" value="abdomen" checked>
+                            </div>
+
+                            <div class="select-box">
+                                <label for="neg-DCAP-BTLS">Pelvis</label>
+                                <input type="checkbox" id="pelvis-dcap" name="neg-DCAP-BTLS" value="abdomen" checked>
+                            </div>
+
+                            <div class="select-box">
+                                <label for="neg-DCAP-BTLS">Back</label>
+                                <input type="checkbox" id="back-dcap" name="neg-DCAP-BTLS" value="back" checked>
+                            </div>
+
+                            <div class="select-box">
+                                <label for="neg-DCAP-BTLS">Upper Extremities</label>
+                                <input type="checkbox" id="upper-ext-dcap" name="neg-DCAP-BTLS" value="upper-ext" checked>
+                            </div>
+
+                            <div class="select-box">
+                                <label for="neg-DCAP-BTLS">Lower Extremities</label>
+                                <input type="checkbox" id="lower-ext-dcap" name="neg-DCAP-BTLS" value="lower-ext" checked>
+                            </div>
+
+                            <br />
+                            
+                            <!--Other Information-->
+                            <label for="other-exam" class="bold-label">Other Exam Info/Interventions:</label>
+                            <br />
+                            <textarea id="other-exam-info" name="other-exam-info" rows="4" cols="100"></textarea>
+                            <br />
+
                         </div>
-                        <div class="select-box">
-                            <label for="resp-muscle-use">Accessory Muscles</label>
-                            <input id="resp-muscle-use" name="resp-muscle-use" type="checkbox">
-                        </div>
-                        <label for="resp-dyspnea">Dyspnea:</label>
-                        <input id="resp-dyspnea" name="resp-dyspnea" type="text">
-                        <br />
-                        
+                    </div>
 
-                        <label for="respirations" class="bold-label">Respirations:</label>
-                        <button type="button" id="respiration-rate">Regular Rate</button>
-                        <button type="button" id="respiration-depth">Regular Depth</button>
-                        <button type="button" id="respiration-rhythm">Regular Rhythm</button>
-                        <br />
+                    <div class="container">
+                        <h2>ALS & Transport:</h2>
+                        <div id="als-fields" class="fields">
+                        <!--ALS-->
+                            <label for="ALS" class="bold-label">ALS:</label>
 
-                        <p class="bold-label">Lung Sounds:</p>
-                        <button type="button" id="left-lung-sound">Left - Clear</button>
-                        <button type="button" id="right-lung-sound">Right - Clear</button>
-                        <br />
+                            <div class="select-box">
+                                <label for="not-requested">Not Requested</label>
+                                <input id="not-requested" name="ALS" value="not-requested" type="radio" checked>
+                            </div>
 
-                        <!--SpO2 -->
-                        <label for="spo2-value" class="bold-label">SpO2:</label>
-                        <input id="spo2-value" name="spo2-value" type="text">
+                            <div class="select-box">
+                                <label for="not-available">Not Available</label>
+                                <input id="not-available" name="ALS" value="not-available" type="radio">
+                            </div>
 
-                        <div class="select-box">
-                            <label for="room-air-O2">Room Air?</label>
-                            <input id="room-air-O2" name="room-air-O2" type="checkbox" checked>
+                            <div class="select-box">
+                                <label for="proximity">Proximity</label>
+                                <input id="proximity" name="ALS" value="proximity" type="radio">
+                            </div>
+
+                            <div class="select-box">
+                                <label for="snn">SNN</label>
+                                <input id="snn" name="ALS" value="snn" type="radio">
+                            </div>
+
+                            <div class="select-box">
+                                <label for="als-triage">Triage</label>
+                                <input id="als-triage" name="ALS" value="als-triage" type="radio">
+                            </div>
+
+                            <div class="select-box">
+                                <label for="one-treat">1 Medic Treat</label>
+                                <input id="one-treat" name="ALS" value="one-treat" type="radio">
+                            </div>
+
+                            <div class="select-box">
+                                <label for="two-treat">2 Medic Treat</label>
+                                <input id="two-treat" name="ALS" value="two-treat" type="radio">
+                            </div>
+
                             <br />
                         </div>
-
-                        <label for="respiratory-other" class="bold-label">Respiratory Notes:</label>
-                        <br />
-                        <textarea id="respiratory-other" name="respiratory-other" rows="3" cols="100"></textarea>
-                        <br />
-
-                        <!--BP-->
-                        <label for="bp" class="bold-label">Blood Pressure:</label>
-                        <input id="bp" name="bp" type="text">
-                        <br />
-
-                        <!--Trauma-->
-                        <p class="bold-label">Trauma:</p>
-                        <br />
-                        <label for="trauma-present">Trauma Present?:</label>
-                        <input type="checkbox" id="trauma-present" name="trauma-present">
-                        <br />
-                        <label for="trauma-desc">Trauma Description:</label>
-                        <br />
-                        <textarea id="trauma-desc" name="trauma-desc" rows="3" cols="100"></textarea>
-                        
-                        <br />
-                        <label for="neg-DCAP-BTLS">Negative DCAP-BTLS:</label>
-                        <br />
-
-                        <div class="select-box">
-                            <label for="neg-DCAP-BTLS">Head</label>
-                            <input type="checkbox" id="head-dcap" name="neg-DCAP-BTLS" value="head" checked>
-                        </div>
-
-                        <div class="select-box">
-                            <label for="neg-DCAP-BTLS">Neck</label>
-                            <input type="checkbox" id="neck-dcap" name="neg-DCAP-BTLS" value="neck" checked>
-                        </div>
-
-                        <div class="select-box">
-                            <label for="neg-DCAP-BTLS">Chest</label>
-                            <input type="checkbox" id="chest-dcap" name="neg-DCAP-BTLS" value="chest" checked>
-                        </div>
-
-                        <div class="select-box">
-                            <label for="neg-DCAP-BTLS">Abdomen</label>
-                            <input type="checkbox" id="abdomen-dcap" name="neg-DCAP-BTLS" value="abdomen" checked>
-                        </div>
-
-                        <div class="select-box">
-                            <label for="neg-DCAP-BTLS">Pelvis</label>
-                            <input type="checkbox" id="pelvis-dcap" name="neg-DCAP-BTLS" value="abdomen" checked>
-                        </div>
-
-                        <div class="select-box">
-                            <label for="neg-DCAP-BTLS">Back</label>
-                            <input type="checkbox" id="back-dcap" name="neg-DCAP-BTLS" value="back" checked>
-                        </div>
-
-                        <div class="select-box">
-                            <label for="neg-DCAP-BTLS">Upper Extremities</label>
-                            <input type="checkbox" id="upper-ext-dcap" name="neg-DCAP-BTLS" value="upper-ext" checked>
-                        </div>
-
-                        <div class="select-box">
-                            <label for="neg-DCAP-BTLS">Lower Extremities</label>
-                            <input type="checkbox" id="lower-ext-dcap" name="neg-DCAP-BTLS" value="lower-ext" checked>
-                        </div>
-
-                        <br />
-                        <br />
-
                     </div>
 
-                    <div id="als-fields">
-                    <h2>ALS & Transport:</h2>
-                    <!--ALS-->
-                        <label for="ALS" class="bold-label">ALS:</label>
+                    <br />
 
-                        <label for="not-requested">Not Requested</label>
-                        <input id="not-requested" name="ALS" value="not-requested" type="radio" checked>
+                    <div class="container">
+                        <div id="transport-fields" class="fields">
+                            <!--RMA vs Transport-->
+                            <label for="transport-decision" class="bold-label">Transport Decision:</label>
+                            
+                            <label for="rma">RMA</label>
+                            <input id="rma" name="transport-decision" value="rma" type="radio">
 
-                        <label for="not-available">Not Available</label>
-                        <input id="not-available" name="ALS" value="not-available" type="radio">
+                            <label for="transport">Transport</label>
+                            <input id="transport" name="transport-decision" value="transport" type="radio" checked>
+                            <br />
 
-                        <label for="proximity">Proximity</label>
-                        <input id="proximity" name="ALS" value="proximity" type="radio">
+                            <!--Transport Method-->
+                            <label for="transport-method" class="bold-label">Transport Method:</label>
 
-                        <label for="snn">SNN</label>
-                        <input id="snn" name="ALS" value="snn" type="radio">
+                            <label for="assisted">Assisted</label>
+                            <input id="assisted" name="transport-method" value="assisted" type="radio" checked>
 
-                        <label for="als-triage">Triage</label>
-                        <input id="als-triage" name="ALS" value="als-triage" type="radio">
+                            <label for="stairchair">Stairchair</label>
+                            <input id="stairchair" name="transport-method" value="stairchair" type="radio">
 
-                        <label for="one-treat">1 medic</label>
-                        <input id="one-treat" name="ALS" value="one-treat" type="radio">
+                            <label for="reeves">Reeves</label>
+                            <input id="reeves" name="transport-method" value="reeves" type="radio">
+                            <br />
+                            
+                            <!--Destination-->
+                            <label for="destination" class="bold-label">Destination:</label>
+                            <input type="text" id="destination" name="destination" value="OMC">
+                            
+                            <label for="bed" class="bold-label">Bed:</label>
+                            <input type="text" id="bed" name="bed" value="the hospital bed">
 
-                        <label for="two-treat">2 medics</label>
-                        <input id="two-treat" name="ALS" value="two-treat" type="radio">
-                        
-                        <br />
+                            <br />
+                            <label for="transport-desc" class="bold-label">Transport Update:</label>
+                            <br />
+                            <textarea id="transport-desc" name="transport-desc" rows="4" cols="100"></textarea>
+                            <br />
+
+                            <!--RN Name-->
+                            <label for="rn-name" class="bold-label">RN:</label>
+                            <input type="text" id="rn-name" name="rn-name" value=" ">
+                        </div>
+
+                        <input type="reset">
+                        <button id='generate-chart' type="button">Generate Chart</button>
                     </div>
-
-                    <div id="transport-fields">
-                        <!--RMA vs Transport-->
-                        <label for="transport-decision" class="bold-label">Transport Decision:</label>
-                        
-                        <label for="rma">RMA</label>
-                        <input id="rma" name="transport-decision" value="rma" type="radio">
-
-                        <label for="transport">Transport</label>
-                        <input id="transport" name="transport-decision" value="transport" type="radio" checked>
-                        <br />
-
-                        <!--Transport Method-->
-                        <label for="transport-method" class="bold-label">Transport Method:</label>
-
-                        <label for="assisted">Assisted</label>
-                        <input id="assisted" name="transport-method" value="assisted" type="radio" checked>
-
-                        <label for="stairchair">Stairchair</label>
-                        <input id="stairchair" name="transport-method" value="stairchair" type="radio">
-
-                        <label for="reeves">Reeves</label>
-                        <input id="reeves" name="transport-method" value="reeves" type="radio">
-                        <br />
-                        
-                        <!--Destination-->
-                        <label for="destination" class="bold-label">Destination:</label>
-                        <input type="text" id="destination" name="destination" value="OMC">
-                        
-                        <label for="bed" class="bold-label">Bed:</label>
-                        <input type="text" id="bed" name="bed" value="the hospital bed">
-
-                        <br />
-                        <label for="transport-desc" class="bold-label">Transport Update:</label>
-                        <br />
-                        <textarea id="transport-desc" name="transport-desc" rows="4" cols="100"></textarea>
-                        <br />
-
-                        <!--RN Name-->
-                        <label for="rn-name" class="bold-label">RN:</label>
-                        <input type="text" id="rn-name" name="rn-name" value=" ">
-                    </div>
-
-                    <br /><br />
-
-                    <!--Reset Button-->
-                    <input type="reset">
+            
+                </div>                    
                 </form>
             </div>
-            <button id='generate-chart' type="button">Generate Chart</button>
+            
             <!--Chart Generator-->
-            <div id="chart-generator-container">
+            <div class="container">
                 <h2>Chart:</h2>
-                <p id="dispatch-output" class="gen-output">No Chart Generated Yet.</p>
-                <p id="scene-output" class="gen-output"></p>
-                <p id="hpi-output" class="gen-output"></p>
-                <p id="exam-output" class="gen-output"></p>
-                <p id="als-output" class="gen-output"></p>
-                <p id="transport-output" class="gen-output"></p>
-                <p id="error-output" class="gen-output"></p>
-
+                <div id="chart-generator-container" class="fields">
+                    <p id="dispatch-output" class="gen-output">No Chart Generated Yet.</p>
+                    <p id="scene-output" class="gen-output"></p>
+                    <p id="hpi-output" class="gen-output"></p>
+                    <p id="exam-output" class="gen-output"></p>
+                    <p id="als-output" class="gen-output"></p>
+                    <p id="transport-output" class="gen-output"></p>
+                    <p id="error-output" class="gen-output"></p>
+                </div>
+                <br />
+                <button id="reset-chart-gen" type="button">Reset Chart</button>
             </div>
-            <button id="reset-chart-gen" type="button">Reset Chart</button>
-
 
         </section>
-        <h3>Z. Cartnick 2025</h3>
+        <footer class="container">
+            <h3>Z. Cartnick 2025</h3>
+        </footer>
+        
     </body>
 </html>
