@@ -12,7 +12,7 @@
         </header>
         <section id="site-body">
             <div id="Form-Container">
-                <h2>Info:</h2>
+                <h2>Scene Info:</h2>
                 <form id="Form">
                     <div id="scene-size-up-fields">
                         <!--Unit-->
@@ -109,12 +109,21 @@
                         <!--Accompanied By-->
                         <label for="bystanders" class="bold-label">Bystanders:</label>
                         <input type="text" id="bystanders" name="bystanders">
+                        <br />
+
+
+                        <!--Other Scene Information-->
+                        <label for="other-scene-info" class="bold-label">Other Scene Info:</label>
+                        <br />
+                        <textarea id="other-scene-info" name="other-scene-info" rows="4" cols="100"></textarea> 
+
                         <br /><br />
 
                     </div>
 
                     <div id="HPI">
-                        
+                        <h2>HPI:</h2>
+
                         <!--Symptoms-->
                         <div id="symptoms-boxes">
                             <label for="symptoms" class="bold-label">Symptoms:</label>
@@ -156,6 +165,8 @@
                                 <label for="dizziness">Dizziness</label>
                                 <input type="checkbox" id="dizziness" name="symptoms" value="dizziness">
                             </div>
+
+                            <br />
 
                             <div class="select-box">
                                 <label for="fever">Fever</label>
@@ -202,6 +213,7 @@
 
 
                     <div id="exam-fields">
+                        <h2>Exam:</h2>
                         <!--Skin Condition-->
                         <p class="bold-label">Skin Condition:</p>
                         <button type="button" id="skin-temperature">Normal Temperature</button>
@@ -263,7 +275,6 @@
                         <label for="bp" class="bold-label">Blood Pressure:</label>
                         <input id="bp" name="bp" type="text">
                         <br />
-                        <br />
 
                         <!--Trauma-->
                         <p class="bold-label">Trauma:</p>
@@ -276,7 +287,7 @@
                         <textarea id="trauma-desc" name="trauma-desc" rows="3" cols="100"></textarea>
                         
                         <br />
-                        <label for="neg-DCAP-BTLS" class="bold-label">Negative DCAP-BTLS:</label>
+                        <label for="neg-DCAP-BTLS">Negative DCAP-BTLS:</label>
                         <br />
 
                         <div class="select-box">
@@ -325,6 +336,7 @@
                     </div>
 
                     <div id="als-fields">
+                    <h2>ALS & Transport:</h2>
                     <!--ALS-->
                         <label for="ALS" class="bold-label">ALS:</label>
 
@@ -382,6 +394,11 @@
                         
                         <label for="bed" class="bold-label">Bed:</label>
                         <input type="text" id="bed" name="bed" value="the hospital bed">
+
+                        <br />
+                        <label for="transport-desc" class="bold-label">Transport Update:</label>
+                        <br />
+                        <textarea id="transport-desc" name="transport-desc" rows="4" cols="100"></textarea>
                         <br />
 
                         <!--RN Name-->

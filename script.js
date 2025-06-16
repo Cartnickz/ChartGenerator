@@ -53,11 +53,18 @@ function updateBox() {
     let positionOutput = `${positionSelect}`;
     let locationOutput = ' ' + location;
     let attendedByOutput = '';
+    let otherSceneInfo = document.getElementById('other-scene-info').value;
 
     if (attendedBy) { attendedByOutput = ' attended by ' + attendedBy; }
 
     document.getElementById('scene-output').innerHTML = sceneOutput + positionOutput 
-    + locationOutput + attendedByOutput + ".";
+    + locationOutput + attendedByOutput + ". ";
+
+    if (otherSceneInfo) {
+        document.getElementById('scene-output').innerHTML += otherSceneInfo + " ";
+    } else {
+        document.getElementById('scene-output').innerHTML += ". ";
+    }
 
     // HPI
     let HPIOutput = determineHPIOutput();
@@ -524,6 +531,7 @@ function getTransportOutput(unit, pronouns) {
     let destination = seekInput(document.getElementById('destination'));
     let bed = seekInput(document.getElementById('bed'));
     let rnName = " " + seekInput(document.getElementById('rn-name'));
+    let transportDescription = document.getElementById('transport-desc').value;
     let transportOutput = ''
 
     if (transportDecision) {
@@ -555,7 +563,13 @@ function getTransportOutput(unit, pronouns) {
                 }
 
                 // en route
-                transportOutput += `<br /><br />En route to ${destination}, the patient was continuously monitored and reassessed. The patient had no new complaints.`
+                transportOutput += `<br /><br />En route to ${destination}, the patient was continuously monitored and reassessed. `;
+
+                if (transportDescription) {
+                    transportOutput += transportDescription + " ";
+                } else {
+                    transportOutput += "The patient had no new complaints. ";
+                }
 
                 // at destination
                 transportOutput += `<br /><br />At ${destination}, the patient was transferred to ${bed} without incident. Both side rails were raised. Patient care was transferred to ${destination} RN${rnName} with report.`
