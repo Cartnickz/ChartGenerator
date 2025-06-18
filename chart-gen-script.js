@@ -490,7 +490,7 @@ function determinePosition() {
             return 'supine';
         } else if (positionSelect.value === 'L-Lateral-position') {
             return 'left-lateral recumbant position';
-        } else if (positionSelect.value === 'L-Lateral-position') {
+        } else if (positionSelect.value === 'R-Lateral-position') {
             return 'right-lateral recumbant position';
         }
     } else {
