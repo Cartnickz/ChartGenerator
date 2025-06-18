@@ -8,7 +8,7 @@
     </head>
     <body>
         <header class="container">
-            <h1>Chart Generator v1.0</h1>
+            <h1>Chart Generator v1.1</h1>
         </header>
         <section id="site-body">
             <div id="Form-Container">
@@ -17,22 +17,28 @@
                         <h2>Scene Info:</h2>
                         <div id="scene-size-up-fields" class="fields">
                             <!--Unit-->
-                            <label for="unit" class="bold-label">Unit:</label>
-                            <input type="text" id="unit" name="unit"/>
+                            <label class="bold-label">
+                                Unit:
+                                <input type="text" id="unit" name="unit"/>
+                            </label>
                             <br />
 
                             <!--Nature-->
-                            <label for="nature" class="bold-label">Nature:</label>
-                            <input type="text" id="nature" name="nature"/>
+                            <label class="bold-label">
+                                Nature:
+                                <input type="text" id="nature" name="nature"/>
+                            </label>
                             <br />
 
                             <!--Age-->
-                            <label for="age" class="bold-label">Patient Age:</label>
-                            <input type="text" id="age" name="age"/>
+                            <label class="bold-label">
+                                Patient Age:
+                                <input type="text" id="age" name="age"/>
+                            </label>
                             <br />
 
                             <!--Sex-->
-                            <label for="sex" class="bold-label">Sex:</label>
+                            <p class="bold-label">Sex:</p>
 
                             <div class="select-box">
                                 <label for="male">M</label>
@@ -49,7 +55,7 @@
                             <br />
 
                             <!--AVPU-->
-                            <label for="AVPU" class="bold-label">Level of Consciousness:</label>
+                            <p class="bold-label">Level of Consciousness:</p>
                             <div class="select-box">
                                 <label for="alert">A</label>
                                 <input type="radio" id="alert" name="AVPU" value="alert" checked>
@@ -72,7 +78,7 @@
                             <br />
 
                             <!--Orientation-->
-                            <label for="orientation" class="bold-label">Orientation:</label>
+                            <p class="bold-label">Orientation:</p>
 
                             <div class="select-box">
                                 <label for="person-orientation">Person</label>
@@ -96,7 +102,7 @@
                             <br />
 
                             <!--Position-->
-                            <label for="position" class="bold-label">Position:</label>
+                            <p class="bold-label">Position:</p>
                             
                             <div class="select-box">
                                 <label for="sitting-position">Sitting</label>
@@ -125,8 +131,8 @@
                             <br />
 
                             <!--Location-->
-                            <label for="location" class="bold-label">Location:</label>
-                            <input type="text" id="location" name="location">
+                            <label for="found-location" class="bold-label">Location:</label>
+                            <input type="text" id="found-location" name="found-location">
                             <br />
 
                             <!--Accompanied By-->
@@ -148,6 +154,7 @@
                     <div class="container">
                         <h2>HPI:</h2>
                         <div id="HPI-fields" class="fields">
+                            
                             <!--Symptoms-->
                             <div id="symptoms-boxes">
                                 <label for="symptoms" class="bold-label">Symptoms:</label>
@@ -228,35 +235,33 @@
 
                             <label for="symptom-onset">Onset:</label>
                             <input type="text" id="symptom-onset" name="symptom-onset">
-
                             
                             <div id="cardiac-assessment">
                                 <br />
                                 <p class="bold-label">Chest Pain Assessment</p>
                                 <br />
-                                    <label for="cp-location">Location:</label>
-                                    <input id="cp-location" name="cp-location" type="cp-location" value="mid-sternal">
+                                    <label>
+                                        Location:
+                                        <input id="cp-location" name="cp-location" type="cp-location" value="mid-sternal">
+                                    </label>
                                     <label for="radiating">Radiating?</label>
-                                    <input id="radiative" name="radiating" type="text">
+                                    <input id="radiating" name="radiating" type="text">
                                     <div class="select-box">
                                         <label for="reproducible-cp">Reproducible on palpation?</label>
                                         <input type="checkbox" id="reproducible-cp" name="reproducible-cp" value="reproducible-cp">
                                     </div>
-                                    <br />
-                                    <label for="cp-quality">Quality: </label>
-                                    <input id="cp-quality" name="cp-quality" type="text">
-                                    
-                                    <label for="cp-quality">Quality: </label>
-                                    <input id="cp-quality" name="cp-quality" type="text">
 
+                                    <br />
+
+                                    <label for="cp-quality">Quality: </label>
+                                    <input id="cp-quality" name="cp-quality" type="text">
+                                    <label for="cp-pain">Quality: </label>
+                                    <input id="cp-pain" name="cp-pain" type="text">
                                     <div class="select-box">
                                         <label for="past-mi">Past-MI?</label>
                                         <input type="checkbox" id="past-mi" name="cardiac-hx" value="past-mi">
                                     </div>
-                                    
-                                    
                                 <br /><br />
-    
                             </div>
 
                             <label for="hpi-other">Other HPI Information:</label>

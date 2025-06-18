@@ -11,26 +11,26 @@ function updateBox() {
     resetGenButton.innerHTML = "Reset";
 
     // Dispatch information
-    let unit = seekInput(document.getElementById('unit'));
-    let nature = seekInput(document.getElementById('nature'));
-    let age = seekInput(document.getElementById('age'));
+    let unit = document.getElementById('unit').value;
+    let nature = document.getElementById('nature').value;
+    let age = document.getElementById('age').value;
     let sex = '';
 
-    // Sex
-    let sexInput = document.querySelector('input[name="sex"]:checked')
+    // Set pronouns
+    let sexInput = document.querySelector('input[name="sex"]:checked');
+
     if (sexInput) {
         if (sexInput.value === 'male') {
-            sex = 'm'
+            sex = 'm';
         } else if (sexInput.value === 'female') {
-            sex = 'f'
-        } else {
-            sex = ''
+            sex = 'f';
         }
     } else {
-        document.getElementById('error-output').innerHTML += "Missing input: " + 'sex' + "<br />"
+         sex = '';
     }
 
-    let pronouns = []
+
+    let pronouns = [];
 
     if (sex === 'm') {
         pronouns = ['he', 'him', 'his', 'his', 's'];
@@ -40,31 +40,50 @@ function updateBox() {
         pronouns = ['they', 'them', 'their', 'theirs', ''];
     }
     
-    let dispatchOutput = `${unit} was dispatched to a ${nature} for a ${age} yo${sex}.`
+    let dispatchOutput = "";
+
+    if (unit) {
+        dispatchOutput += `${unit} was dispatched`;
+    } else {
+        dispatchOutput += `EMS was dispatched`;
+    }
+
+    if (nature) {
+        dispatchOutput += ` to a ${nature}`;
+    }
+
+    if (age) {
+        dispatchOutput += ` for a ${age} yo${sex}`;
+    }
+
+    dispatchOutput += `. `;
+
     document.getElementById('dispatch-output').innerHTML = dispatchOutput;
 
     // Scene description
-    let avpu = determineAVPU();
-    let positionSelect = determinePosition();
-    let location = seekInput(document.getElementById('location'));
+    let sceneOutput = determineAVPU() + determinePosition();
+    let location = document.getElementById('found-location').value;
     let attendedBy = document.getElementById('bystanders').value;
-
-    let sceneOutput = `On arrival, the patient was ${avpu} `;
-    let positionOutput = `${positionSelect}`;
-    let locationOutput = ' ' + location;
-    let attendedByOutput = '';
     let otherSceneInfo = document.getElementById('other-scene-info').innerHTML;
 
-    if (attendedBy) { attendedByOutput = ' attended by ' + attendedBy; }
 
-    document.getElementById('scene-output').innerHTML = sceneOutput + positionOutput 
-    + locationOutput + attendedByOutput + ". ";
+    if (location) {
+        sceneOutput += " " + location;
+    }
+
+    if (attendedBy) { 
+        sceneOutput = ' attended by ' + attendedBy; 
+    }
 
     if (otherSceneInfo) {
-        document.getElementById('scene-output').innerHTML += otherSceneInfo + " ";
-    } else {
-        document.getElementById('scene-output').innerHTML += ". ";
+        document.getElementById('scene-output').innerHTML += otherSceneInfo + ". ";
     }
+
+    if (sceneOutput) {
+        sceneOutput += ". "
+    }
+
+    document.getElementById('scene-output').innerHTML = sceneOutput;
 
     // HPI
     let HPIOutput = determineHPIOutput();
@@ -97,7 +116,6 @@ function updateBox() {
     let transportOutput = getTransportOutput(unit, pronouns);
     document.getElementById('transport-output').innerHTML = transportOutput;
 }
-
 
 function determineHPIOutput() {
     let symptomsObject = {
@@ -212,7 +230,7 @@ function determineRespiratoryOutput() {
     let leftLungSound = document.getElementById('left-lung-sound').innerHTML.toLowerCase();
     let rightLungSound = document.getElementById('right-lung-sound').innerHTML.toLowerCase();
 
-    let spo2Value = document.getElementById('spo2-value').value.toLowerCase();
+    let spo2Value = document.getElementById('spo2-value').value;
     let roomAir = document.getElementById('room-air-O2').checked;
 
     let respOutput = "";
@@ -298,15 +316,18 @@ function determineRespiratoryOutput() {
             }
         }
 
-        if (spo2Value > 91) {
-            respOutput += `SpO2 was found to be ${spo2Value}% indicating adequate oxygenation`;
-        } else if (spo2Value === "") {
-            document.getElementById('error-output').innerHTML += "Missing input: SpO2<br/>";
-        } else {
-            respOutput += `SpO2 was found to be ${spo2Value}% indicating inadequate oxygenation`;
+        if (spo2Value) {
+            if (spo2Value > 91) {
+                respOutput += `SpO2 was found to be ${spo2Value}% indicating adequate oxygenation`;
+            } else if (spo2Value === "") {
+                document.getElementById('error-output').innerHTML += "Missing input: SpO2<br/>";
+            } else {
+                respOutput += `SpO2 was found to be ${spo2Value}% indicating inadequate oxygenation`;
+            }
+            roomAir ? respOutput += " at room air. " : respOutput += ". "
         }
 
-        roomAir ? respOutput += " at room air. " : respOutput += ". "
+        
     }
     
     return respOutput;
@@ -377,8 +398,6 @@ function determineBP() {
             }
         }
         
-    } else {
-        document.getElementById('error-output').innerHTML += "Missing Input: Blood Pressure<br />";
     }
 
     return bpOutput
@@ -424,7 +443,7 @@ function rotateButton(button, names) {
 
 
 function determineAVPU() {
-    let avpuOutput = "";
+    let avpuOutput = `On arrival, the patient was `;
 
     let avpuInput = document.querySelector('input[name="AVPU"]:checked');
 
@@ -449,29 +468,29 @@ function determineAVPU() {
         // Patient is alert
         if (avpu === 'alert') {
             if (orientationCount === 4) {
-                avpuOutput = 'awake, alert, and oriented x 4';
+                avpuOutput += 'awake, alert, and oriented x 4';
             } else if (orientationCount === 3) {     
-                avpuOutput = 'awake, alert, and oriented to ' + orientationTrue[0] + ", " 
+                avpuOutput += 'awake, alert, and oriented to ' + orientationTrue[0] + ", " 
                 + orientationTrue[1] + ", and " + orientationTrue[2];
             } else if (orientationCount === 2) {
-                avpuOutput = 'awake, alert, and oriented to ' + orientationTrue[0] + " and " 
+                avpuOutput += 'awake, alert, and oriented to ' + orientationTrue[0] + " and " 
                 + orientationTrue[1];
             } else if (orientationCount === 1) {
-                avpuOutput = 'awake, alert, and oriented to ' + orientationTrue[0];
+                avpuOutput += 'awake, alert, and oriented to ' + orientationTrue[0];
             } else if (orientationCount === 0) {
-                avpuOutput = 'awake, alert, but not oriented to person, place, event, or time';
+                avpuOutput += 'awake, alert, but not oriented to person, place, event, or time';
             }
 
         } else if (avpu === 'verbal') {  // Patient is responsive to verbal
-            avpuOutput = 'responsive to verbal stimuli';
+            avpuOutput += 'responsive to verbal stimuli';
         } else if (avpu === 'painful') {  // Patient is responsive to pain
-            avpuOutput = 'responsive to painful stimuli';
+            avpuOutput += 'responsive to painful stimuli';
         } else if (avpu === 'unresponsive') {
-            avpuOutput = 'unresponsive';
+            avpuOutput += 'unresponsive';
         }
-        return avpuOutput
+        return avpuOutput;
     } else {
-        document.getElementById('error-output').innerHTML += 'Missing input: AVPU<br />';
+        return "On arrival, the patient was found";
     }
 
 
@@ -483,18 +502,18 @@ function determinePosition() {
     
     if (positionSelect) {
         if (positionSelect.value === 'sitting-position') {
-            return 'sitting';
+            return ' sitting';
         } else if (positionSelect.value === 'standing-position') {
-            return 'standing';
+            return ' standing';
         } else if (positionSelect.value === 'supine-position') {
-            return 'supine';
+            return ' supine';
         } else if (positionSelect.value === 'L-Lateral-position') {
-            return 'left-lateral recumbant position';
+            return ' in the left-lateral recumbant position';
         } else if (positionSelect.value === 'R-Lateral-position') {
-            return 'right-lateral recumbant position';
+            return ' in the right-lateral recumbant position';
         }
     } else {
-        document.getElementById('error-output').innerHTML += "Missing input: position<br />";
+        return '';
     }
 }
 
