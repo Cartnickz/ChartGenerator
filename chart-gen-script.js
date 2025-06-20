@@ -35,8 +35,7 @@ function updateBox() {
 
     if (location) sceneOutput += " " + location;
     if (attendedBy) sceneOutput += ' attended by ' + attendedBy;
-    if (otherSceneInfo) document.getElementById('scene-output').innerHTML += otherSceneInfo + ". ";
-    if (sceneOutput) sceneOutput += ". ";
+    otherSceneInfo ? sceneOutput += ". " + otherSceneInfo : sceneOutput += ". ";
 
     document.getElementById('scene-output').innerHTML = sceneOutput;
 
@@ -135,10 +134,12 @@ function determinePosition() {
             return ' standing';
         } else if (positionSelect.value === 'supine-position') {
             return ' supine';
-        } else if (positionSelect.value === 'L-Lateral-position') {
+        } else if (positionSelect.value === 'L-lateral-position') {
             return ' in the left-lateral recumbant position';
-        } else if (positionSelect.value === 'R-Lateral-position') {
+        } else if (positionSelect.value === 'R-lateral-position') {
             return ' in the right-lateral recumbant position';
+        } else if (positionSelect.value === 'prone-position') {
+            return ' prone';
         }
     } else {
         return '';

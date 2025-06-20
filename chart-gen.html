@@ -44,15 +44,15 @@
 
                         <div class="select-box">
                             <label for="male">M</label>
-                            <input type="radio" id="male" name="sex" value="male">
+                            <input type="radio" id="male" name="sex" value="male" />
                         </div>
                         <div class="select-box">
                             <label for="female">F</label>
-                            <input type="radio" id="female" name="sex" value="female">
+                            <input type="radio" id="female" name="sex" value="female" />
                         </div>
                         <div class="select-box">
                             <label for="other">Other</label>
-                            <input type="radio" id="other" name="sex" value="other">
+                            <input type="radio" id="other" name="sex" value="other" />
                         </div>
                         <br />
 
@@ -60,22 +60,22 @@
                         <p class="bold-label">Level of Consciousness:</p>
                         <div class="select-box">
                             <label for="alert">A</label>
-                            <input type="radio" id="alert" name="AVPU" value="alert" checked>
+                            <input type="radio" id="alert" name="AVPU" value="alert" checked />
                         </div>
 
                         <div class="select-box">
                             <label for="verbal">V</label>
-                            <input type="radio" id="verbal" name="AVPU" value="verbal">
+                            <input type="radio" id="verbal" name="AVPU" value="verbal" />
                         </div>
 
                         <div class="select-box">
                             <label for="painful">P</label>
-                            <input type="radio" id="painful" name="AVPU" value="painful">
+                            <input type="radio" id="painful" name="AVPU" value="painful" />
                         </div>
 
                         <div class="select-box">
                             <label for="unresponsive">U</label>
-                            <input type="radio" id="unresponsive" name="AVPU" value="unresponsive">
+                            <input type="radio" id="unresponsive" name="AVPU" value="unresponsive" />
                         </div>
                         <br />
 
@@ -85,25 +85,25 @@
                         <div class="select-box">
                             <label for="person-orientation">Person</label>
                             <input id="person-orientation" name="orientation" value="person-orientation" type="checkbox"
-                                checked>
+                                checked />
                         </div>
 
                         <div class="select-box">
                             <label for="place-orientation">Place</label>
                             <input id="place-orientation" name="orientation" value="place-orientation" type="checkbox"
-                                checked>
+                                checked />
                         </div>
 
                         <div class="select-box">
                             <label for="time-orientation">Time</label>
                             <input id="time-orientation" name="orientation" value="time-orientation" type="checkbox"
-                                checked>
+                                checked />
                         </div>
 
                         <div class="select-box">
                             <label for="event-orientation">Event</label>
                             <input id="event-orientation" name="orientation" value="event-orientation" type="checkbox"
-                                checked>
+                                checked />
                         </div>
                         <br />
 
@@ -112,38 +112,43 @@
 
                         <div class="select-box">
                             <label for="sitting-position">Sitting</label>
-                            <input id="sitting-position" name="position" value="sitting-position" type="radio">
+                            <input id="sitting-position" name="position" value="sitting-position" type="radio" />
                         </div>
 
                         <div class="select-box">
                             <label for="sitting-position">Standing</label>
-                            <input id="standing-position" name="position" value="standing-position" type="radio">
+                            <input id="standing-position" name="position" value="standing-position" type="radio" />
                         </div>
 
                         <div class="select-box">
                             <label for="supine-position">Supine</label>
-                            <input id="supine-position" name="position" value="supine-position" type="radio">
+                            <input id="supine-position" name="position" value="supine-position" type="radio" />
+                        </div>
+
+                        <div class="select-box">
+                            <label for="prone-position">Prone</label>
+                            <input id="prone-position" name="position" value="prone-position" type="radio" />
                         </div>
 
                         <div class="select-box">
                             <label for="L-lateral-position">L-Lateral</label>
-                            <input id="L-Lateral-position" name="position" value="L-lateral-position" type="radio">
+                            <input id="L-Lateral-position" name="position" value="L-lateral-position" type="radio" />
                         </div>
 
                         <div class="select-box">
                             <label for="R-lateral-position">R-Lateral</label>
-                            <input id="R-Lateral-position" name="position" value="R-lateral-position" type="radio">
+                            <input id="R-Lateral-position" name="position" value="R-lateral-position" type="radio" />
                         </div>
                         <br />
 
                         <!--Location-->
                         <label for="found-location" class="bold-label" >Location:</label>
-                        <input type="text" id="found-location" name="found-location" placeholder="ex. at their kitchen table">
+                        <input type="text" id="found-location" name="found-location" placeholder="ex. at their kitchen table" />
                         <br />
 
                         <!--Accompanied By-->
                         <label for="bystanders" class="bold-label">Bystanders:</label>
-                        <input type="text" id="bystanders" name="bystanders" placeholder="ex. family">
+                        <input type="text" id="bystanders" name="bystanders" placeholder="ex. family" />
                         <br />
 
 
@@ -243,10 +248,10 @@
                             <br />
                             <label>
                                 Location:
-                                <input id="cp-location" name="cp-location" type="cp-location">
+                                <input id="cp-location" name="cp-location" type="text" placeholder="ex. mid-sternal">
                             </label>
                             <label for="cp-radiating">Radiating?</label>
-                            <input id="cp-radiating" name="cp-radiating" type="text">
+                            <input id="cp-radiating" name="cp-radiating" type="text" placeholder="ex. down the left arm">
                             <div class="select-box"> 
                                 <label for="cp-reproducible">Reproducible on palpation?</label>
                                 <input type="checkbox" id="cp-reproducible" name="cp-reproducible"
@@ -256,9 +261,9 @@
                             <br />
 
                             <label for="cp-pain">Pain (0-10): </label>
-                            <input id="cp-pain" name="cp-pain" type="text">
+                            <input id="cp-pain" name="cp-pain" type="text" placeholder="ex. 9">
                             <label for="cp-quality">Quality: </label>
-                            <input id="cp-quality" name="cp-quality" type="text">
+                            <input id="cp-quality" name="cp-quality" type="text" placeholder="ex. sharp">
                             <br />
                             <div class="select-box">
                                 <label for="past-mi">Past-MI?</label>
