@@ -15,47 +15,14 @@ function updateBox() {
     let nature = document.getElementById('nature').value;
     let age = document.getElementById('age').value;
     let sex = '';
-
-    // Set pronouns
-    let sexInput = document.querySelector('input[name="sex"]:checked');
-
-    if (sexInput) {
-        if (sexInput.value === 'male') {
-            sex = 'm';
-        } else if (sexInput.value === 'female') {
-            sex = 'f';
-        }
-    } else {
-         sex = '';
-    }
-
-
-    let pronouns = [];
-
-    if (sex === 'm') {
-        pronouns = ['he', 'him', 'his', 'his', 's'];
-    } else if (sex === 'f') {
-        pronouns = ['she', 'her', 'her', 'hers', 's'];
-    } else {
-        pronouns = ['they', 'them', 'their', 'theirs', ''];
-    }
-    
     let dispatchOutput = "";
 
-    if (unit) {
-        dispatchOutput += `${unit} was dispatched`;
-    } else {
-        dispatchOutput += `EMS was dispatched`;
-    }
+    if (!unit) unit = 'EMS';
 
-    if (nature) {
-        dispatchOutput += ` to a ${nature}`;
-    }
-
-    if (age) {
-        dispatchOutput += ` for a ${age} yo${sex}`;
-    }
-
+    dispatchOutput += `${unit} was dispatched`;
+    if (nature) dispatchOutput += ` to a ${nature}`;
+    if (age) dispatchOutput += ` for a ${age} yo${sex}`;
+    
     dispatchOutput += `. `;
 
     document.getElementById('dispatch-output').innerHTML = dispatchOutput;
@@ -66,22 +33,10 @@ function updateBox() {
     let attendedBy = document.getElementById('bystanders').value;
     let otherSceneInfo = document.getElementById('other-scene-info').innerHTML;
 
-
-    if (location) {
-        sceneOutput += " " + location;
-    }
-
-    if (attendedBy) { 
-        sceneOutput = ' attended by ' + attendedBy; 
-    }
-
-    if (otherSceneInfo) {
-        document.getElementById('scene-output').innerHTML += otherSceneInfo + ". ";
-    }
-
-    if (sceneOutput) {
-        sceneOutput += ". "
-    }
+    if (location) sceneOutput += " " + location;
+    if (attendedBy) sceneOutput += ' attended by ' + attendedBy;
+    if (otherSceneInfo) document.getElementById('scene-output').innerHTML += otherSceneInfo + ". ";
+    if (sceneOutput) sceneOutput += ". ";
 
     document.getElementById('scene-output').innerHTML = sceneOutput;
 
@@ -96,8 +51,7 @@ function updateBox() {
     let bpOutput = determineBP();
     let otherExamInfo = document.getElementById('other-exam-info').innerHTML;
 
-    document.getElementById('exam-output').innerHTML = skinOutput + radialOutput
-        + respOutput + bpOutput;
+    document.getElementById('exam-output').innerHTML = skinOutput + radialOutput + respOutput + bpOutput;
 
     if (document.getElementById('trauma-present').checked) {
         document.getElementById('exam-output').innerHTML += determineTrauma();
@@ -107,15 +61,117 @@ function updateBox() {
         document.getElementById('exam-output').innerHTML += "<br /><br />" + otherExamInfo;
     }
 
-
     // ALS
     let alsOutput = getALSStatus();
     document.getElementById('als-output').innerHTML = alsOutput;
     
     // Transport
-    let transportOutput = getTransportOutput(unit, pronouns);
+    let transportOutput = getTransportOutput(unit);
     document.getElementById('transport-output').innerHTML = transportOutput;
 }
+
+
+function determineAVPU() {
+    let avpuOutput = `On arrival, the patient was `;
+
+    let avpuInput = document.querySelector('input[name="AVPU"]:checked');
+
+    if (avpuInput) {
+        let avpu = document.querySelector('input[name="AVPU"]:checked').value;
+        const orientation = {
+            person: document.getElementById('person-orientation').checked,
+            place: document.getElementById('place-orientation').checked,
+            time: document.getElementById('time-orientation').checked,
+            event: document.getElementById('event-orientation').checked
+        };
+        let orientationTrue = [];
+
+        let orientationCount = 0;
+        Object.keys(orientation).forEach(question => {
+            if (orientation[question]) {
+                orientationCount++;
+                orientationTrue.push(question);
+            };
+        });
+
+        // Patient is alert
+        if (avpu === 'alert') {
+            if (orientationCount === 4) {
+                avpuOutput += 'awake, alert, and oriented x 4';
+            } else if (orientationCount === 3) {     
+                avpuOutput += 'awake, alert, and oriented to ' + orientationTrue[0] + ", " 
+                + orientationTrue[1] + ", and " + orientationTrue[2];
+            } else if (orientationCount === 2) {
+                avpuOutput += 'awake, alert, and oriented to ' + orientationTrue[0] + " and " 
+                + orientationTrue[1];
+            } else if (orientationCount === 1) {
+                avpuOutput += 'awake, alert, and oriented to ' + orientationTrue[0];
+            } else if (orientationCount === 0) {
+                avpuOutput += 'awake, alert, but not oriented to person, place, event, or time';
+            }
+
+        } else if (avpu === 'verbal') {  // Patient is responsive to verbal
+            avpuOutput += 'responsive to verbal stimuli';
+        } else if (avpu === 'painful') {  // Patient is responsive to pain
+            avpuOutput += 'responsive to painful stimuli';
+        } else if (avpu === 'unresponsive') {
+            avpuOutput += 'unresponsive';
+        }
+        return avpuOutput;
+    } else {
+        return "On arrival, the patient was found";
+    }
+
+}
+
+
+function determinePosition() {
+    let positionSelect = document.querySelector('input[name="position"]:checked');
+    
+    if (positionSelect) {
+        if (positionSelect.value === 'sitting-position') {
+            return ' sitting';
+        } else if (positionSelect.value === 'standing-position') {
+            return ' standing';
+        } else if (positionSelect.value === 'supine-position') {
+            return ' supine';
+        } else if (positionSelect.value === 'L-Lateral-position') {
+            return ' in the left-lateral recumbant position';
+        } else if (positionSelect.value === 'R-Lateral-position') {
+            return ' in the right-lateral recumbant position';
+        }
+    } else {
+        return '';
+    }
+}
+
+
+function determinePronouns() {
+    let sexInput = document.querySelector('input[name="sex"]:checked');
+
+    if (sexInput) {
+        if (sexInput.value === 'male') {
+            sex = 'm';
+        } else if (sexInput.value === 'female') {
+            sex = 'f';
+        }
+    } else {
+         sex = '';
+    }
+
+
+    let pronouns = [];
+    if (sex === 'm') {
+        pronouns = ['he', 'him', 'his', 'his', 's'];
+    } else if (sex === 'f') {
+        pronouns = ['she', 'her', 'her', 'hers', 's'];
+    } else {
+        pronouns = ['they', 'them', 'their', 'theirs', ''];
+    }
+
+    return pronouns;
+}
+
 
 function determineHPIOutput() {
     let symptomsObject = {
@@ -131,26 +187,25 @@ function determineHPIOutput() {
         'abdominal pain': document.getElementById('abd-pain').checked,
         'weakness': document.getElementById('weakness').checked,
         'recent falls': document.getElementById('recent-falls').checked,
-        'recent travel': document.getElementById('recent-travel').checked,
         'any other pain': document.getElementById('other-pain').checked
     }
-
     let hpiOutput = "";
-
     let positiveSymptoms = [];
     let negativeSymptoms = [];
+    let onset = document.getElementById('symptom-onset').value;
 
     Object.keys(symptomsObject).forEach(key => {
-        if (symptomsObject[key]) {
-            positiveSymptoms.push(key);
-        } else {
-            negativeSymptoms.push(key);
-        }
+        symptomsObject[key] ? positiveSymptoms.push(key) : negativeSymptoms.push(key);
     })
     
     if (positiveSymptoms.length > 0 && document.getElementById('report-symptoms').checked) {
         hpiOutput += "The patient is complaining of " + listItems(positiveSymptoms) +  ". ";
     }
+
+    if (onset) hpiOutput += `The patient reports the symptoms began ${onset} prior to EMS arrival. `;
+    
+    // chest pain assessment
+    if (symptomsObject['chest pain']) hpiOutput += cpAssessment();
 
     hpiOutput += document.getElementById('hpi-other').innerHTML + " ";
 
@@ -161,6 +216,70 @@ function determineHPIOutput() {
     return hpiOutput;
 }
 
+
+function cpAssessment() {
+    let location = document.getElementById('cp-location').value;
+    let radiation = document.getElementById('cp-radiating').value;
+    let reproducible = document.getElementById('cp-reproducible').checked;
+    let quality = document.getElementById('cp-quality').value;
+    let pain = document.getElementById('cp-pain').value;
+
+    let cardiacHx = {
+        'past myocardial infarction' : document.getElementById('cp-hx-mi').checked,
+        'stent placement' : document.getElementById('cp-hx-stents').checked,
+        'coronary artery bypass graft (CABG)': document.getElementById('cp-hx-cabg').checked,
+        'pacemaker placement' : document.getElementById('cp-hx-pacemaker').checked,
+        'defibrillator placement' : document.getElementById('cp-hx-defibrillator').checked,
+        'LVAD placement' : document.getElementById('cp-hx-lvad').checked,
+        'anxiety' : document.getElementById('cp-hx-anxiety').checked
+    }
+
+    let cpOther = document.getElementById('cp-other').innerHTML;
+    let pronouns = determinePronouns();
+
+    let positiveHx = [];
+    let negativeHx = [];
+
+    Object.keys(cardiacHx).forEach(key => {
+        cardiacHx[key] ? positiveHx.push(key) : negativeHx.push(key);
+    })
+
+    let cpOutput = "";
+
+    location ? cpOutput += `The patient reported ${location} chest pain` : cpOutput += 'The patient reported chest pain';
+    radiation ? cpOutput += ` radiating ${radiation}` : cpOutput += ` that was nonradiating`;
+    reproducible ? cpOutput += ' and reproducible on palpation. ' : cpOutput += ' and nonreproducible. ';
+
+    if (quality && pain) {
+        cpOutput += capitalize(pronouns[0]) + ` described ` + pronouns[2] + ` pain as ${quality} and rated ${pain}/10. `;
+    } else if (!quality && pain) {
+        cpOutput += capitalize(pronouns[0]) + ` rated ` + pronouns[2] + ` pain ${pain}/10. `;
+    } else if (quality && !pain) {
+        cpOutput += capitalize(pronouns[0]) + ` described ` + pronouns[2] + ` pain as ${quality}. `;
+    }
+
+    if (positiveHx.length > 0) {
+        cpOutput += "The patient endorsed history of " + listItems(positiveHx) + ". ";
+    }
+
+    if (cpOther) {
+        cpOutput += cpOther;
+    }
+
+    return cpOutput;
+
+
+
+
+
+
+
+
+
+
+
+
+}
 
 
 function determineSkinOutput() {
@@ -194,6 +313,7 @@ function determineSkinOutput() {
 
     return skinOutput;
 }
+
 
 function determineRadialOutput() {
     let radialStrength = document.getElementById('radial-strength').innerHTML.toLowerCase();
@@ -333,43 +453,6 @@ function determineRespiratoryOutput() {
     return respOutput;
 }
 
-function determineTrauma() {
-    let traumaList = {
-        'head': document.getElementById('head-dcap').checked,
-        'neck': document.getElementById('neck-dcap').checked,
-        'chest': document.getElementById('chest-dcap').checked,
-        'abdomen': document.getElementById('abdomen-dcap').checked,
-        'back': document.getElementById('back-dcap').checked,
-        'pelvis': document.getElementById('pelvis-dcap').checked,
-        'upper extremities': document.getElementById('upper-ext-dcap').checked,
-        'lower extremities': document.getElementById('lower-ext-dcap').checked
-    }
-
-    let positiveDCAP = [];
-    let negativeDCAP = [];
-
-    let traumaOutput = [];
-
-    Object.keys(traumaList).forEach(key => {
-        if (traumaList[key]) {
-            negativeDCAP.push(key);
-        } else {
-            positiveDCAP.push(key);
-        }
-    })
-
-    traumaOutput += document.getElementById('trauma-desc').innerHTML + " ";
-
-    if (negativeDCAP.length > 0 && document.getElementById('trauma-present').checked) {
-        traumaOutput += "No DCAP-BTLS noted to " + listItems(negativeDCAP) + ". ";
-    }
-
-    return traumaOutput;
-
-
-
-}
-
 
 function determineBP() {
     let bp = document.getElementById('bp').value.toLowerCase();
@@ -405,116 +488,41 @@ function determineBP() {
 }
 
 
-function resetBox() {
-    let outputLines = document.getElementsByClassName('gen-output');
-    for (i = 0; i < outputLines.length; i++) {
-        outputLines[i].innerHTML = '';
+function determineTrauma() {
+    let traumaList = {
+        'head': document.getElementById('head-dcap').checked,
+        'neck': document.getElementById('neck-dcap').checked,
+        'chest': document.getElementById('chest-dcap').checked,
+        'abdomen': document.getElementById('abdomen-dcap').checked,
+        'back': document.getElementById('back-dcap').checked,
+        'hip/pelvis': document.getElementById('hip/pelvis-dcap').checked,
+        'upper extremities': document.getElementById('upper-ext-dcap').checked,
+        'lower extremities': document.getElementById('lower-ext-dcap').checked
     }
-    outputLines[0].innerHTML = 'No Chart Generated Yet..'
 
-    resetGenButton.innerHTML = "Chart has been reset..";
-}
+    let positiveDCAP = [];
+    let negativeDCAP = [];
 
+    let traumaOutput = [];
 
-function seekInput(input) {
-    if (input.value) {
-        return input.value
-    } else {
-        document.getElementById('error-output').innerHTML += "Missing input: " + input.name + "<br />";
-    }
-}
-
-
-function rotateButton(button, names) {
-    let currentIndex = names.indexOf(button.innerHTML);
-    if (currentIndex !== -1) {
-        // get length of list
-        let length = names.length;
-        // increment index (unless at end of array, then start over)
-        if (currentIndex + 1 === length) {
-            button.innerHTML = names[0];
+    Object.keys(traumaList).forEach(key => {
+        if (traumaList[key]) {
+            positiveDCAP.push(key);
         } else {
-            button.innerHTML = names[currentIndex + 1];
+            negativeDCAP.push(key);
         }
-    } else {
-        document.getElementById('error-output').innerHTML += "Button value not in array: " + button.id + "<br />";
-    }
-}
+    })
 
+    traumaOutput += document.getElementById('trauma-desc').innerHTML + " ";
 
-function determineAVPU() {
-    let avpuOutput = `On arrival, the patient was `;
-
-    let avpuInput = document.querySelector('input[name="AVPU"]:checked');
-
-    if (avpuInput) {
-        let avpu = document.querySelector('input[name="AVPU"]:checked').value;
-        const orientation = {
-            person: document.getElementById('person-orientation').checked,
-            place: document.getElementById('place-orientation').checked,
-            time: document.getElementById('time-orientation').checked,
-            event: document.getElementById('event-orientation').checked
-        };
-        let orientationTrue = [];
-
-        let orientationCount = 0;
-        Object.keys(orientation).forEach(question => {
-            if (orientation[question]) {
-                orientationCount++;
-                orientationTrue.push(question);
-            };
-        });
-
-        // Patient is alert
-        if (avpu === 'alert') {
-            if (orientationCount === 4) {
-                avpuOutput += 'awake, alert, and oriented x 4';
-            } else if (orientationCount === 3) {     
-                avpuOutput += 'awake, alert, and oriented to ' + orientationTrue[0] + ", " 
-                + orientationTrue[1] + ", and " + orientationTrue[2];
-            } else if (orientationCount === 2) {
-                avpuOutput += 'awake, alert, and oriented to ' + orientationTrue[0] + " and " 
-                + orientationTrue[1];
-            } else if (orientationCount === 1) {
-                avpuOutput += 'awake, alert, and oriented to ' + orientationTrue[0];
-            } else if (orientationCount === 0) {
-                avpuOutput += 'awake, alert, but not oriented to person, place, event, or time';
-            }
-
-        } else if (avpu === 'verbal') {  // Patient is responsive to verbal
-            avpuOutput += 'responsive to verbal stimuli';
-        } else if (avpu === 'painful') {  // Patient is responsive to pain
-            avpuOutput += 'responsive to painful stimuli';
-        } else if (avpu === 'unresponsive') {
-            avpuOutput += 'unresponsive';
-        }
-        return avpuOutput;
-    } else {
-        return "On arrival, the patient was found";
+    if (negativeDCAP.length > 0 && document.getElementById('trauma-present').checked) {
+        traumaOutput += "No DCAP-BTLS noted to " + listItems(negativeDCAP) + ". ";
     }
 
+    return traumaOutput;
 
-}
 
 
-function determinePosition() {
-    let positionSelect = document.querySelector('input[name="position"]:checked');
-    
-    if (positionSelect) {
-        if (positionSelect.value === 'sitting-position') {
-            return ' sitting';
-        } else if (positionSelect.value === 'standing-position') {
-            return ' standing';
-        } else if (positionSelect.value === 'supine-position') {
-            return ' supine';
-        } else if (positionSelect.value === 'L-Lateral-position') {
-            return ' in the left-lateral recumbant position';
-        } else if (positionSelect.value === 'R-Lateral-position') {
-            return ' in the right-lateral recumbant position';
-        }
-    } else {
-        return '';
-    }
 }
 
 
@@ -543,14 +551,21 @@ function getALSStatus() {
 }
 
 
-function getTransportOutput(unit, pronouns) {
+function getTransportOutput(unit) {
     let transportDecision = document.querySelector('input[name="transport-decision"]:checked');
     let transportMethod = document.querySelector('input[name="transport-method"]:checked');
-    let destination = seekInput(document.getElementById('destination'));
-    let bed = seekInput(document.getElementById('bed'));
-    let rnName = " " + seekInput(document.getElementById('rn-name'));
+    let destination = document.getElementById('destination').value;
+    let bed = document.getElementById('bed').value;
+    let rnName = document.getElementById('rn-name').value;
     let transportDescription = document.getElementById('transport-desc').innerHTML;
     let transportOutput = ''
+    let pronouns = determinePronouns();
+
+    if (!destination) destination = 'the hospital';
+    if (!bed) bed = 'their bed';
+    rnName ? rnName = "RN " + rnName : rnName = "RN";
+
+
 
     if (transportDecision) {
         if (transportDecision.value === 'rma') {  // RMA
@@ -590,7 +605,7 @@ function getTransportOutput(unit, pronouns) {
                 }
 
                 // at destination
-                transportOutput += `<br /><br />At ${destination}, the patient was transferred to ${bed} without incident. Both side rails were raised. Patient care was transferred to ${destination} RN${rnName} with report.`
+                transportOutput += `<br /><br />At ${destination}, the patient was transferred to ${bed} without incident. Both side rails were raised. Patient care was transferred to ${destination} ${rnName} with report.`
 
                 return transportOutput
             
@@ -601,6 +616,35 @@ function getTransportOutput(unit, pronouns) {
         document.getElementById('error-output').innerHTML += "Missing input: transport decision"
     }
 }
+
+
+function resetBox() {
+    let outputLines = document.getElementsByClassName('gen-output');
+    for (i = 0; i < outputLines.length; i++) {
+        outputLines[i].innerHTML = '';
+    }
+    outputLines[0].innerHTML = 'No Chart Generated Yet..'
+
+    resetGenButton.innerHTML = "Chart has been reset..";
+}
+
+
+function rotateButton(button, names) {
+    let currentIndex = names.indexOf(button.innerHTML);
+    if (currentIndex !== -1) {
+        // get length of list
+        let length = names.length;
+        // increment index (unless at end of array, then start over)
+        if (currentIndex + 1 === length) {
+            button.innerHTML = names[0];
+        } else {
+            button.innerHTML = names[currentIndex + 1];
+        }
+    } else {
+        document.getElementById('error-output').innerHTML += "Button value not in array: " + button.id + "<br />";
+    }
+}
+
 
 function listItems(array) {
     let items = "";
@@ -621,7 +665,14 @@ function listItems(array) {
 }
 
 
+function showHide(checkbox, showHide) {
+    checkbox.checked ? showHide.style.display = "inline-block" : showHide.style.display = "none";
+}
 
+
+function capitalize(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+}
 
 
 // BUTTONS ------------------------------------------------------------
@@ -658,6 +709,11 @@ document.getElementById('left-lung-sound').onclick = () =>
     rotateButton(document.getElementById('left-lung-sound'), ['Left - Clear', 'Left - Diminished', 'Left - Wheeze', 'Left - Rales', 'Left - Rhonchi']);
 document.getElementById('right-lung-sound').onclick = () => 
     rotateButton(document.getElementById('right-lung-sound'), ['Right - Clear', 'Right - Diminished', 'Right - Wheeze', 'Right - Rales', 'Right - Rhonchi']);
+
+// Chest Pain
+document.getElementById('chest-pain').onclick = () => 
+    showHide(document.getElementById('chest-pain'), document.getElementById('cardiac-assessment'));
+
 
 // Update Box and Reset Buttons
 generateButton.onclick = updateBox;

@@ -101,3 +101,8 @@ footer h3 {
     border-width: 1px;
     padding: 10px 10px;
 }
+
+#cardiac-assessment {
+    display: none;
+}
+
