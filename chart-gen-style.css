@@ -56,6 +56,30 @@ button:hover {
     background-color: #141414;
 }
 
+button:active {
+    box-shadow: rgba(100, 100, 100, 10) 0px 1px 4px;
+}
+
+#reset-button {
+    color: white;
+    background-color: #3d3d3d;
+    border: none;
+    padding: 5px 5px;
+    margin: 3px 3px;
+    border-radius: 3px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    transition: 0.3;
+}
+
+#reset-button:hover {
+    background-color: #141414;
+}
+
+#reset-button:active {
+    box-shadow: rgba(0, 0, 0, 0) 0px 0px 0px;
+}
+
+
 .fields {
     background-color: #333333;
     padding: 10px 10px 10px 10px;
@@ -92,7 +116,8 @@ footer h3 {
 
 .custom-textarea {
     width: 95%;
-    height: 100px;
+    height: auto;
+    min-height: 100px;
     margin: 10px auto 0px auto;
     color: white;
     background-color: #1f1f1f;
@@ -106,3 +131,8 @@ footer h3 {
     display: none;
 }
 
+#reset {
+    display: inline-block;
+    margin: 10px auto 0px auto;
+    justify-self: center;
+}

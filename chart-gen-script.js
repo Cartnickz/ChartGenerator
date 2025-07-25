@@ -17,6 +17,12 @@ function updateBox() {
     let sex = '';
     let dispatchOutput = "";
 
+    if (document.getElementById('male').checked) {
+        sex = 'm';
+    } else if (document.getElementById('female').checked) {
+        sex = 'f';
+    }
+
     if (!unit) unit = 'EMS';
 
     dispatchOutput += `${unit} was dispatched`;
@@ -59,6 +65,9 @@ function updateBox() {
     if (otherExamInfo) {
         document.getElementById('exam-output').innerHTML += "<br /><br />" + otherExamInfo;
     }
+
+    // Interventions
+    let interventions = determineInterventions();
 
     // ALS
     let alsOutput = getALSStatus();
@@ -268,18 +277,6 @@ function cpAssessment() {
     }
 
     return cpOutput;
-
-
-
-
-
-
-
-
-
-
-
-
 }
 
 
@@ -527,6 +524,22 @@ function determineTrauma() {
 }
 
 
+function determineInterventions() {
+    let oxygen = document.getElementById('oxygen').checked;
+    let airway = document.getElementById('airway').checked;
+    let albuterol = document.getElementById('albuterol').checked;
+    let cpap = document.getElementById('cpap').checked;
+    let asa = document.getElementById('asa').checked;
+    let collar = document.getElementById('c-collar').checked;
+    let narcan = document.getElementById('narcan').checked;
+    let epipen = document.getElementById('epi-pen').checked;
+
+    let interventionsOutput = "";
+
+    if (oxygen) {}
+}
+
+
 function getALSStatus() {
     let ALSSelect = document.querySelector('input[name="ALS"]:checked');
 
@@ -608,7 +621,7 @@ function getTransportOutput(unit) {
                 // at destination
                 transportOutput += `<br /><br />At ${destination}, the patient was transferred to ${bed} without incident. Both side rails were raised. Patient care was transferred to ${destination} ${rnName} with report.`
 
-                return transportOutput
+                return transportOutput;
             
             }
         }
@@ -691,7 +704,7 @@ document.getElementById('skin-moisture').onclick = () =>
 document.getElementById('radial-strength').onclick = () => 
     rotateButton(document.getElementById('radial-strength'), ['Strong', 'Weak', 'Bounding']);
 document.getElementById('radial-regularity').onclick = () => 
-    rotateButton(document.getElementById('radial-regularity'), ['Regularly Regular', 'Regularly Irregular ', 'Irregularly Irregular']);
+    rotateButton(document.getElementById('radial-regularity'), ['Regularly Regular', 'Regularly Irregular', 'Irregularly Irregular']);
 document.getElementById('radial-rate').onclick = () => 
     rotateButton(document.getElementById('radial-rate'), ['Normal Rate', 'Bradycardic', 'Tachycardic']);
 document.getElementById('radial-equal').onclick = () => 

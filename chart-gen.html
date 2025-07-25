@@ -21,21 +21,21 @@
                         <!--Unit-->
                         <label class="bold-label">
                             Unit:
-                            <input type="text" id="unit" name="unit" placeholder="ex. 539"/>
+                            <input type="text" id="unit" name="unit" placeholder="ex. 539" />
                         </label>
                         <br />
 
                         <!--Nature-->
                         <label class="bold-label">
                             Nature:
-                            <input type="text" id="nature" name="nature" placeholder='ex. cardiac'/>
+                            <input type="text" id="nature" name="nature" placeholder='ex. cardiac' />
                         </label>
                         <br />
 
                         <!--Age-->
                         <label class="bold-label">
                             Patient Age:
-                            <input type="text" id="age" name="age" placeholder="ex. 65"/>
+                            <input type="text" id="age" name="age" placeholder="ex. 65" />
                         </label>
                         <br />
 
@@ -142,8 +142,9 @@
                         <br />
 
                         <!--Location-->
-                        <label for="found-location" class="bold-label" >Location:</label>
-                        <input type="text" id="found-location" name="found-location" placeholder="ex. at their kitchen table" />
+                        <label for="found-location" class="bold-label">Location:</label>
+                        <input type="text" id="found-location" name="found-location"
+                            placeholder="ex. at their kitchen table" />
                         <br />
 
                         <!--Accompanied By-->
@@ -162,6 +163,7 @@
                     </div>
                 </div>
 
+                <!--HPI-->
                 <div class="container">
                     <h2>HPI:</h2>
                     <div id="HPI-fields" class="fields">
@@ -251,8 +253,9 @@
                                 <input id="cp-location" name="cp-location" type="text" placeholder="ex. mid-sternal">
                             </label>
                             <label for="cp-radiating">Radiating?</label>
-                            <input id="cp-radiating" name="cp-radiating" type="text" placeholder="ex. down the left arm">
-                            <div class="select-box"> 
+                            <input id="cp-radiating" name="cp-radiating" type="text"
+                                placeholder="ex. down the left arm">
+                            <div class="select-box">
                                 <label for="cp-reproducible">Reproducible on palpation?</label>
                                 <input type="checkbox" id="cp-reproducible" name="cp-reproducible"
                                     value="cp-reproducible">
@@ -288,13 +291,11 @@
                             </div>
                             <div class="select-box">
                                 <label for="past-lvad">LVAD?</label>
-                                <input type="checkbox" id="cp-hx-lvad" name="cardiac-hx"
-                                    value="cp-hx-lvad">
+                                <input type="checkbox" id="cp-hx-lvad" name="cardiac-hx" value="cp-hx-lvad">
                             </div>
                             <div class="select-box">
                                 <label for="past-anxiety">Anxiety?</label>
-                                <input type="checkbox" id="cp-hx-anxiety" name="cardiac-hx"
-                                    value="cp-hx-anxiety">
+                                <input type="checkbox" id="cp-hx-anxiety" name="cardiac-hx" value="cp-hx-anxiety">
                             </div>
                             <br />
                             <label for="cp-other">Other Chest Pain Info: </label>
@@ -311,6 +312,7 @@
                     </div>
                 </div>
 
+                <!--Exam-->
                 <div class="container">
                     <h2>Exam:</h2>
                     <div id="exam-fields" class="fields">
@@ -432,6 +434,50 @@
 
                         <br /><br />
 
+                        <!--Interventions-->
+                        <p class="bold-label">Interventions:</p>
+                        <br />
+                        <div class="select-box">
+                            <label for="oxygen">Oxygen:</label>
+                            <input type="checkbox" id="oxygen" name="interventions" value="oxygen">
+                        </div>
+                        
+                        <div class="select-box">
+                            <label for="airway">Airway:</label>
+                            <input type="checkbox" id="airway" name="interventions" value="airway">
+                        </div>
+
+                        <div class="select-box">
+                            <label for="albuterol">Albuterol:</label>
+                            <input type="checkbox" id="albuterol" name="interventions" value="albuterol">
+                        </div>
+                        <div class="select-box">
+                            <label for="cpap">CPAP:</label>
+                            <input type="checkbox" id="cpap" name="interventions" value="cpap">
+                        </div>
+
+                        <div class="select-box">
+                            <label for="asa">ASA:</label>
+                            <input type="checkbox" id="asa" name="interventions" value="asa">
+                        </div>
+
+                        <div class="select-box">
+                            <label for="c-collar">C-Collar:</label>
+                            <input type="checkbox" id="c-collar" name="interventions" value="c-collar">
+                        </div>
+
+                        <div class="select-box">
+                            <label for="narcan">Narcan:</label>
+                            <input type="checkbox" id="narcan" name="interventions" value="narcan">
+                        </div>
+
+                        <div class="select-box">
+                            <label for="epi-pen">Epi-Pen:</label>
+                            <input type="checkbox" id="epi-pen" name="interventions" value="epi-pen">
+                        </div>
+
+                        <br /><br />
+
                         <!--Other Information-->
                         <label for="other-exam" class="bold-label">Other Exam Info/Interventions:</label>
                         <br />
@@ -441,6 +487,7 @@
                     </div>
                 </div>
 
+                <!--ALS-->
                 <div class="container">
                     <h2>ALS & Transport:</h2>
                     <div id="als-fields" class="fields">
@@ -488,6 +535,7 @@
 
                 <br />
 
+                <!--Transport-->
                 <div class="container">
                     <div id="transport-fields" class="fields">
                         <!--RMA vs Transport-->
@@ -530,13 +578,10 @@
                         <label for="rn-name" class="bold-label">RN:</label>
                         <input type="text" id="rn-name" name="rn-name">
                     </div>
-
-                    <button id='reset' type="button">Reset</button>
-
+                    <input id="reset-button" type="reset" value="Reset" />
                 </div>
-
-        </div>
-        </form>
+                
+            </form>
         </div>
 
         <!--Chart Generator-->
