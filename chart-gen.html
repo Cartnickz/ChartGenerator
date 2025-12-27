@@ -3,14 +3,15 @@
 <html>
 
 <head>
-    <title>Chart Generator v1.1</title>
+    <title>Chart Generator</title>
     <link href="./chart-gen-style.css" rel="stylesheet">
     <script src="./chart-gen-script.js" defer></script>
 </head>
 
 <body>
     <header class="container">
-        <h1>Chart Generator v1.1</h1>
+        <h4 id="nav"><a href="./index.html">CartnickLabs</a> > Chart Generator</h4>
+        <h1>Chart Generator v1.2</h1>
     </header>
     <section id="site-body">
         <div id="Form-Container">
@@ -235,10 +236,6 @@
                                 <input type="checkbox" id="recent-falls" name="symptoms" value="recent-falls">
                             </div>
 
-                            <div class="select-box">
-                                <label for="recent-travel">Other Pain</label>
-                                <input type="checkbox" id="other-pain" name="symptoms" value="other-pain">
-                            </div>
                         </div>
 
                         <label for="symptom-onset">Onset:</label>
@@ -345,6 +342,9 @@
                         <label for="resp-dyspnea">Dyspnea (in words/breath):</label>
                         <input id="resp-dyspnea" name="resp-dyspnea" type="text" placeholder="ex. 2-3">
                         <br />
+                        <label for="speak-fully">Able to speak in full sentences?</label>
+                        <input id="speak-fully" name="speak-fully" type="checkbox" checked></input>
+                        <br />
 
 
                         <label for="respirations" class="bold-label">Respirations:</label>
@@ -354,8 +354,8 @@
                         <br />
 
                         <p class="bold-label">Lung Sounds:</p>
-                        <button type="button" id="left-lung-sound">Left - Clear</button>
-                        <button type="button" id="right-lung-sound">Right - Clear</button>
+                        <button type="button" id="left-lung-sound">Left - Not Checked</button>
+                        <button type="button" id="right-lung-sound">Right - Not Checked</button>
                         <br />
 
                         <!--SpO2 -->
@@ -476,13 +476,244 @@
                             <input type="checkbox" id="epi-pen" name="interventions" value="epi-pen">
                         </div>
 
-                        <br /><br />
+                        <br />
+
+                        <!--Oxygen Info-->
+                        <div id="oxygen-info">
+                            <br />
+                            <p class="bold-label">Oxygen Info:</p>
+                            <br />
+                            
+                            <label for="oxygen">LPM:</label>
+                            <input type="text" id="oxygen-lpm" name="oxygen-lpm" placeholder="ex. 15">
+
+                            <br />
+
+                            <label for="oxygen-method">Via:</label>
+                            <div class="select-box"> 
+                                <label for="oxygen-nc">Nasal Cannula</label>
+                                <input id="oxygen-nc" type="radio" name="oxygen-method" value="NC">
+                            </div>
+                            <div class="select-box">
+                                <label for="oxygen-nrb">Non-Rebreather</label>
+                                <input id="oxygen-nrb" type="radio" name="oxygen-method" value="NRB">
+                            </div>
+                            <div class="select-box">
+                                <label for="oxygen-bvm">BVM</label>
+                                <input id="oxygen-bvm" type="radio" name="oxygen-method" value="BVM">
+                            </div>
+                            <div class="select-box">
+                                <label for="oxygen-bb">Blow-By</label>
+                                <input id="oxygen-bb" type="radio" name="oxygen-method" value="BB">
+                            </div>
+
+                            <div class="select-box">
+                                <label for="oxygen-improved">Improved?:</label>
+                                <input id="oxygen-improved" type="checkbox" name="oxygen-improved" value="oxygen-improved" checked>
+                            </div>
+                            <br />
+                            <label for="oxygen-reassess-spo2">New SpO2?</label>
+                            <input id="oxygen-reassess-spo2" type="text" name="oxygen-reassess-spo2">
+
+                            <br /> <br />
+                            
+                            <div id="oxygen-info2">
+                                <label for="oxygen-lpm2">LPM:</label>
+                                <input type="text" id="oxygen-lpm2" name="oxygen-lpm2">
+
+                                <br />
+
+                                <label for="oxygen-method2">Via:</label>
+                                <div class="select-box"> 
+                                    <label for="oxygen-nc2">Nasal Cannula</label>
+                                    <input id="oxygen-nc2" type="radio" name="oxygen-method2" value="NC">
+                                </div>
+                                <div class="select-box">
+                                    <label for="oxygen-nrb2">Non-Rebreather</label>
+                                    <input id="oxygen-nrb2" type="radio" name="oxygen-method2" value="NRB">
+                                </div>
+                                <div class="select-box">
+                                    <label for="oxygen-bvm2">BVM</label>
+                                    <input id="oxygen-bvm2" type="radio" name="oxygen-method2" value="BVM">
+                                </div>
+                                <div class="select-box">
+                                    <label for="oxygen-bb2">Blow-By</label>
+                                    <input id="oxygen-bb2" type="radio" name="oxygen-method2" value="BB">
+                                </div>
+                                <div class="select-box">
+                                    <label for="oxygen-improved2">Improved?:</label>
+                                    <input id="oxygen-improved2" type="checkbox" name="oxygen-improved2" value="improved" checked>
+                                </div>
+                                <br />
+                                <label for="oxygen-reassess-spo2-2">New SpO2?</label>
+                                <input id="oxygen-reassess-spo2-2" type="text" name="oxygen-reassess-spo2-2">
+                                <br /><br />
+                            </div>
+                        </div>
+
+                        <!--Airway Info-->
+                        <div id="airway-info">
+                            <p class="bold-label">Airway Info:</p>
+
+                            <br />
+                            <label for="airway-type">Type:</label>
+                            <div class="select-box">
+                                <label for="airway-oral">Oral</label>
+                                <input id="airway-oral" type="radio" name="airway-type" value="oral">
+                            </div>
+                            <div class="select-box">
+                                <label for="airway-nasal">Nasal</label>
+                                <input id="airway-nasal" type="radio" name="airway-type" value="nasal">
+                            </div>
+                            <br />
+                            <div id="airway-size-div">
+                                <label for="airway-size">Size: </label>
+                                <input id="airway-size" type="text" name="airway-size">
+                            </div>
+                            <div class="select-box">
+                                    <label for="airway-secured">Secured?</label>
+                                    <input id="airway-secured" type="checkbox" name="airway-secured" checked>
+                            </div>
+                            <br /><br />
+                        </div>
+
+                        <!--Albuterol Info-->
+                        <div id="albuterol-info">
+                            <p class="bold-label">Albuterol Info:</p>
+                            <br />
+                        
+                            <label for="albuterol-type">Type:</label>
+
+                            <div class="select-box">
+                                <label for="albuterol-mdi">MDI</label>
+                                <input type="checkbox" name="albuterol-type" id="albuterol-mdi" value="albuterol-mdi">
+                            </div>
+                            <div class="select-box">
+                                <label for="albuterol-hhn">Nebulizer</label>
+                                <input type="checkbox" name="albuterol-type" id="albuterol-hhn" value="albuterol-hhn">
+                            </div>
+                            <br />
+                            <div id="mdi-info-div">
+                                <label for='mdi-puffs'>Puffs Assisted:</label>
+                                <input type="text" name="mdi-puffs" id="mdi-puffs">
+                                <div class="select-box">
+                                    <label for="mdi-improve">Improved?</label>
+                                    <input type="checkbox" name="mdi-improve" id="mdi-improve" checked>
+                                </div>
+                            </div>
+                            <br />
+                            <div id="hhn-info-div">
+                                <label for="hhn-doses">Doses Administered:</label>
+                                <div class="select-box">
+                                    <label for="hhn-one-dose">1 dose</label>
+                                    <input type="radio" name="hhn-doses" id="hhn-one-dose">
+                                </div>
+                                <div class="select-box">
+                                    <label for="hhn-two-doses">2 doses</label>
+                                    <input type="radio" name="hhn-doses" id="hhn-two-doses">
+                                </div>
+                                <br />
+                                <label for="hhn-spo2-dose1">SpO2 after Dose 1:</label>
+                                <input type="text" name="hhn-spo2-dose1" id="hhn-spo2-dose1">
+                                <br />
+                                <div id="hhn-spo2-dose2-div">
+                                    <label for="hhn-spo2-dose2">SpO2 after Dose 2:</label>
+                                    <input type="text" name="hhn-spo2-dose2" id="hhn-spo2-dose2">
+                                </div>
+                            </div>
+                            <br />
+                        </div>
+
+                        <!--CPAP Info-->
+                        <div id="cpap-info-div">
+                            <p class="bold-label">CPAP Info:</p>
+                            <br />
+                            <label for="cpap-pressure">Pressure:</label>
+                            <div class="select-box">
+                                <label for="cpap-dry">5mm H2O</label>
+                                <input type="radio" name="cpap-pressure" id="cpap-dry" value="cpap-dry">
+                            </div>
+                            <div class="select-box">
+                                <label for="cpap-wet">10mm H2O</label>
+                                <input type="radio" name="cpap-pressure" id="cpap-wet" value="cpap-wet">
+                            </div>
+                            <label for="cpap-improved">Improved?</label>
+                            <input type="checkbox" name="cpap-improved" id="cpap-improved" checked>
+                            <br />
+                            <br />
+                        </div>
+                    
+                        <!--ASA Info-->
+                        <div id="asa-info-div">
+                            <p class="bold-label">Aspirin Info:</p>
+                            <br />
+                            <label for="asa-dose">Dose:</label>
+                            <br />
+                            <div class="select-box">
+                                <label for="asa-dose-81">81mg</label>
+                                <input type="radio" name="asa-dose" id="asa-dose-81" value="asa-dose-81">
+                            </div>
+                            <div class="select-box">
+                                <label for="asa-dose-162">162mg</label>
+                                <input type="radio" name="asa-dose" id="asa-dose-162" value="asa-dose-162">
+                            </div>
+                            <div class="select-box">
+                                <label for="asa-dose-243">243mg</label>
+                                <input type="radio" name="asa-dose" id="asa-dose-243" value="asa-dose-243">
+                            </div>
+                            <div class="select-box">
+                                <label for="asa-dose-344">344mg</label>
+                                <input type="radio" name="asa-dose" id="asa-dose-344" value="asa-dose-344" checked>
+                            </div>
+                            <div class="select-box">
+                                <label for="asa-dose-done">Already at full dose</label>
+                                <input type="radio" name="asa-dose" id="asa-dose-done" value="asa-dose-done">
+                            </div>
+                            <div class="select-box">
+                                <label for="asa-dose-none">Not Indicated</label>
+                                <input type="radio" name="asa-dose" id="asa-dose-none" value="asa-dose-none">
+                            </div>
+                            <br />
+                            <div class="select-box">
+                                <label for="asa-improved">Improved?</label>
+                                <input type="checkbox" name="asa-improved" id="asa-improved">
+                            </div>
+
+
+                            
+                            <label for="asa-reassess">Pain Reassessment?</label>
+                            <input type="text" name="asa-reassess" id="asa-reassess">
+                            <br />
+                            <br />
+                        </div>
+
+
+                        
+                        <!--Epi-Pen Info-->
+                        <div id="epi-div">
+                            <p class="bold-label">Epi Info:</p>
+                            <br />
+                            <label for="epi-dose">Dose:</label>
+                            <div class="select-box">
+                                <label for="epi-adult">Adult</label>
+                                <input type="radio" name="epi-dose" id="epi-adult" value="epi-adult">
+                            </div>
+                            <div class="select-box">
+                                <label for="epi-child">Child</label>
+                                <input type="radio" name="epi-dose" id="epi-child" value="epi-child">
+                            </div>
+                            <br />
+                            <br />
+                        </div>
+
 
                         <!--Other Information-->
+                        <br />
                         <label for="other-exam" class="bold-label">Other Exam Info/Interventions:</label>
                         <br />
                         <div id="other-exam-info" class="custom-textarea" contenteditable="plaintext-only"></div>
                         <br />
+
 
                     </div>
                 </div>
@@ -491,7 +722,6 @@
                 <div class="container">
                     <h2>ALS & Transport:</h2>
                     <div id="als-fields" class="fields">
-                        <!--ALS-->
                         <label for="ALS" class="bold-label">ALS:</label>
 
                         <div class="select-box">
@@ -528,6 +758,8 @@
                             <label for="two-treat">2 Medic Treat</label>
                             <input id="two-treat" name="ALS" value="two-treat" type="radio">
                         </div>
+
+                        <br />
 
                         <br />
                     </div>
@@ -592,6 +824,7 @@
                 <p id="scene-output" class="gen-output"></p>
                 <p id="hpi-output" class="gen-output"></p>
                 <p id="exam-output" class="gen-output"></p>
+                <p id="interventions-output" class="gen-output"></p>
                 <p id="als-output" class="gen-output"></p>
                 <p id="transport-output" class="gen-output"></p>
                 <p id="error-output" class="gen-output"></p>
@@ -603,7 +836,8 @@
 
     </section>
     <footer class="container">
-        <h3>CartnickLabs - v1.1</h3>
+        <h3>CartnickLabs - v1.2</h3>
+        <h3>Updated December 26, 2025</h3>
     </footer>
 
 </body>

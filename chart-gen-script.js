@@ -68,6 +68,7 @@ function updateBox() {
 
     // Interventions
     let interventions = determineInterventions();
+    document.getElementById('interventions-output').innerHTML = interventions;
 
     // ALS
     let alsOutput = getALSStatus();
@@ -196,8 +197,7 @@ function determineHPIOutput() {
         'chills': document.getElementById('chills').checked,
         'abdominal pain': document.getElementById('abd-pain').checked,
         'weakness': document.getElementById('weakness').checked,
-        'recent falls': document.getElementById('recent-falls').checked,
-        'any other pain': document.getElementById('other-pain').checked
+        'recent falls': document.getElementById('recent-falls').checked
     }
     let hpiOutput = "";
     let positiveSymptoms = [];
@@ -363,7 +363,9 @@ function determineRespiratoryOutput() {
             if (respDysneaCount) {
                 respOutput += `The patient exhibited ${respDysneaCount} word dyspnea. `;
             } else {
-                respOutput += "The patient was able to speak in full and complete sentences. ";
+                if (document.getElementById('speak-fully').checked) {
+                    respOutput += "The patient was able to speak in full and complete sentences. ";
+                }
             }
 
             if (respRate === 'regular rate' && respDepth === 'regular depth' && respRhythm === 'regular rhythm') {
@@ -391,8 +393,13 @@ function determineRespiratoryOutput() {
 
         } else {
             respOutput += "The patient did not appear to be in respiratory distress. " 
-            + "No accessory muscle use noted. The patient was able to speak in full and complete sentences. "
-            + "Respirations were found to be regular in rate, depth, and rhythm. ";
+            + "No accessory muscle use noted. "
+            
+            if (document.getElementById('speak-fully').checked) {
+                    respOutput += "The patient was able to speak in full and complete sentences. ";
+                }
+            
+            respOutput += "Respirations were found to be regular in rate, depth, and rhythm. ";
         }
 
         // Equal Lung Sounds
@@ -525,9 +532,27 @@ function determineTrauma() {
 
 
 function determineInterventions() {
+    // oxygen variables
     let oxygen = document.getElementById('oxygen').checked;
+    let oxygenLPM = document.getElementById('oxygen-lpm').value;
+    let oxygenSPO2 = document.getElementById('oxygen-reassess-spo2').value;
+    let oxygenLPM2 = document.getElementById('oxygen-lpm2').value;
+    let oxygenSPO22 = document.getElementById('oxygen-reassess-spo2-2').value;
+
+    // airway variables
     let airway = document.getElementById('airway').checked;
+    let airwaySize = document.getElementById('airway-size').value;
+
+    // albuterol variables
     let albuterol = document.getElementById('albuterol').checked;
+    let albuterolMDI = document.getElementById('albuterol-mdi').checked;
+    let albuterolMDIPuffs = document.getElementById('mdi-puffs').value;
+    let albuterolHHN = document.getElementById('albuterol-hhn').checked;
+    let albuterolDose1 = document.getElementById('hhn-one-dose').checked;
+    let albuterolDose2 = document.getElementById('hhn-two-doses').checked;
+    let albuterolSPO2 = document.getElementById('hhn-spo2-dose1').value;
+    let albuterolSPO22 = document.getElementById('hhn-spo2-dose2').value;
+
     let cpap = document.getElementById('cpap').checked;
     let asa = document.getElementById('asa').checked;
     let collar = document.getElementById('c-collar').checked;
@@ -536,7 +561,200 @@ function determineInterventions() {
 
     let interventionsOutput = "";
 
-    if (oxygen) {}
+    // an airway was placed
+    if (airway) {
+        // oral airway
+        if (document.getElementById('airway-oral').checked) {
+            interventionsOutput += "An oropharyngeal airway was placed in the patient's mouth. ";
+        // nasal airway
+        } else if (document.getElementById('airway-nasal').checked) {
+            // size of nasal airway given
+            if (airwaySize) {
+                interventionsOutput += "A size " + airwaySize + " nasopharyngeal airway was placed. ";
+            } else {
+                interventionsOutput += "A nasopharyngeal airway was placed. ";
+            }
+        }
+        // was the airway successfully secured?
+        if (document.getElementById('airway-secured').checked) {
+            interventionsOutput += "The patient's airway was secured. ";
+        } else {
+            interventionsOutput += "The patient's airway could not be secured. ";
+        }
+    }
+
+    if (oxygen) {
+        interventionsOutput += "The patient was administered oxygen";
+        if (oxygenLPM) {
+            interventionsOutput += " at " + oxygenLPM + " LPM"
+        }
+
+        if (document.getElementById('oxygen-nc').checked) {
+            interventionsOutput += " via a nasal cannula";
+        } else if (document.getElementById('oxygen-nrb').checked) {
+            interventionsOutput += " via a non-rebreather";
+        } else if (document.getElementById('oxygen-bvm').checked) {
+            interventionsOutput += " via a bag-valve mask";
+        } else if (document.getElementById('oxygen-bb').checked) {
+            interventionsOutput += " using the blow-by method";
+        }
+
+        interventionsOutput += ". ";
+
+        if (document.getElementById('oxygen-improved').checked) {
+            interventionsOutput += "Patient oxygenation improved. ";
+        } else {
+            interventionsOutput += "Patient oxygenation did not show significant improvement. ";
+        }
+
+        if (oxygenSPO2) {
+            interventionsOutput += "On reassessment, the patient's SpO2 was found to be " + oxygenSPO2 + "%. ";
+        }
+
+        if (oxygenLPM2) {
+            interventionsOutput += "The patient's oxygen administration was changed to " + oxygenLPM2 + " LPM";
+            
+            if (document.getElementById('oxygen-nc2').checked) {
+            interventionsOutput += " via a nasal cannula2";
+            } else if (document.getElementById('oxygen-nrb2').checked) {
+            interventionsOutput += " via a non-rebreather";
+            } else if (document.getElementById('oxygen-bvm2').checked) {
+            interventionsOutput += " via a bag-valve mask";
+            } else if (document.getElementById('oxygen-bb2').checked) {
+            interventionsOutput += " using the blow-by method";
+            }
+
+            interventionsOutput += ". ";
+
+            if (document.getElementById('oxygen-improved2').checked) {
+                interventionsOutput += "Patient oxygenation improved. ";
+            } else {
+                interventionsOutput += "Patient oxygenation still did not show significant improvement. ";
+            }
+
+            if (oxygenSPO22) {
+                interventionsOutput += "On second reassessment, the patient's SpO2 was found to be " + oxygenSPO22 + "%. ";
+            }
+        }
+    }
+
+    // Albuterol
+    if (albuterol) {
+        // Albuterol via inhalor
+        if (albuterolMDI) {
+            interventionsOutput += "The patient was assisted with ";
+            if (albuterolMDIPuffs) {
+                interventionsOutput += albuterolMDIPuffs + " puffs of ";
+            }
+            interventionsOutput += " their prescribed albuterol metered dose inhalor. ";
+            if (document.getElementById('mdi-improve')) {
+                interventionsOutput += "The patient reported an improvement of symptoms. ";
+            }
+        }
+        
+        // Albuterol via nebulizer
+        if (albuterolHHN) {
+            interventionsOutput += "The patient was administered ";
+            // one dose of albuterol
+            if (albuterolDose1) {
+                interventionsOutput += " one dose of albuterol at 2.5mg/3mL via a handheld nebulizer treatment. ";
+                if (albuterolSPO2) {
+                    interventionsOutput += "On reassessment, the patient's SpO2 was found to be " + albuterolSPO2 + "%. ";
+                }
+            // two doses of albuterol
+            } else if (albuterolDose2) {
+                // first reassessment SpO2 given
+                if (albuterolSPO2) {
+                    interventionsOutput += " one dose of albuterol at 2.5mg/3mL via a handheld nebulizer treatment. ";
+                    interventionsOutput += "On reassessment, the patient's SpO2 was found to be " + albuterolSPO2 + "%. ";
+                    interventionsOutput += "After approximately 5 minutes, a second dose of albuterol was given. ";
+                    if (albuterolSPO22) {
+                        interventionsOutput += "The patient was reassessed again. SpO2 was found to be " + albuterolSPO22 + "%. ";
+                    }
+                // reassessment SpO2 between doses not given
+                } else {
+                    interventionsOutput += " one dose of albuterol at 2.5mg/3mL via a handheld nebulizer treatment. ";
+                    interventionsOutput += "After approximately 5 minutes, a second dose of albuterol was given. ";
+                    // final SpO2 given
+                    if (albuterolSPO22) {
+                        interventionsOutput += "On reassessment, SpO2 was found to be " + albuterolSPO22 + "%. ";
+                    }
+                }
+            }
+        }
+        
+        if (!(albuterolMDI || albuterolHHN)) {
+            interventionsOutput += "The patient was given albuterol.";
+        }
+    }
+
+    // CPAP
+    if (cpap) {
+        interventionsOutput += "The patient was placed on CPAP";
+        if (document.getElementById('cpap-wet').checked) {
+            interventionsOutput += " at 10 cm H2O";
+
+        } else if (document.getElementById('cpap-dry').checked) {
+            interventionsOutput += " at 5 cm H2O";
+        }
+        
+        interventionsOutput += ". ";
+        
+        if (document.getElementById("cpap-improved")) {
+            interventionsOutput += "The patient reported an improvement of symptoms. ";
+        }
+    }
+
+
+    // ASA
+    if (asa) {
+        if (document.getElementById('asa-dose-81').checked) {
+            interventionsOutput += "The patient was administered 81 mg of aspirin for a full dose of 344 mg since they stated they had already taken 243 mg in the past 24 hours. ";
+        } else if (document.getElementById('asa-dose-162').checked) {
+            interventionsOutput += "The patient was administered 162 mg of aspirin for a full dose of 344 mg since they stated they had already taken 162 mg in the past 24 hours. ";
+        } else if (document.getElementById('asa-dose-243').checked) {
+            interventionsOutput += "The patient was administered 243 mg of aspirin for a full dose of 344 mg since they stated they had already taken 81 mg in the past 24 hours. ";
+        } else if (document.getElementById('asa-dose-344').checked) {
+            interventionsOutput += "The patient was administered 344 mg of aspirin. ";
+        } else if (document.getElementById('asa-dose-done').checked) {
+            interventionsOutput += "Aspirin was considered, however, the patient stated they had already taken the full 344 mg dose for today. ";
+        } else if (document.getElementById('asa-dose-none').checked) {
+            interventionsOutput += "Aspirin was considered but not given as the patient's signs and symptoms associated with chest pain made it likely that the chest pain was not cardiac in nature. ";
+        }
+
+        if (document.getElementById('asa-improved').checked) {
+            interventionsOutput += "The patient reported an improvement in symptoms. ";
+        }
+
+        if (document.getElementById('asa-reassess').value) {
+            interventionsOutput += "On reassessment, the patient stated their chest pain was " + document.getElementById('asa-reassess').value + "/10.";
+        }
+    }
+
+    // C-Collar
+    if (collar) {
+        interventionsOutput += "The patient's cervical spine was immobilized using a c-collar. "
+    }
+
+
+    // Narcan
+    if (narcan) {
+        interventionsOutput += "The patient was given 4 mg naloxone via a single-dose nasal spray. "
+    }
+
+
+    // Epi-Pen
+    if (epipen) {
+        if (document.getElementById('epi-adult').checked) {
+            interventionsOutput += "The patient was administered 0.3 mg epinephrine using an auto-injector. ";
+        } else if (document.getElementById('epi-child').checked) {
+            interventionsOutput += "The patient was administed 0.15 mg epinephrine using an auto-injector. ";
+        } else {
+            interventionsOutput += "The patient was injected with an epi-pen auto-injector. "
+        }
+    }
+
+    return interventionsOutput;
 }
 
 
@@ -679,8 +897,12 @@ function listItems(array) {
 }
 
 
-function showHide(checkbox, showHide) {
-    checkbox.checked ? showHide.style.display = "inline-block" : showHide.style.display = "none";
+function showHide(checkbox, showHide, reverse=false) {
+    if (!reverse) {
+        checkbox.checked ? showHide.style.display = "block" : showHide.style.display = "none";
+    } else {
+        checkbox.checked ? showHide.style.display = "none" : showHide.style.display = "inline-block";
+    }
 }
 
 
@@ -720,14 +942,55 @@ document.getElementById('respiration-rhythm').onclick = () =>
 
 // Lung Sounds Buttons
 document.getElementById('left-lung-sound').onclick = () => 
-    rotateButton(document.getElementById('left-lung-sound'), ['Left - Clear', 'Left - Diminished', 'Left - Wheeze', 'Left - Rales', 'Left - Rhonchi']);
+    rotateButton(document.getElementById('left-lung-sound'), ['Left - Not Checked', 'Left - Clear', 'Left - Diminished', 'Left - Wheeze', 'Left - Rales', 'Left - Rhonchi']);
 document.getElementById('right-lung-sound').onclick = () => 
-    rotateButton(document.getElementById('right-lung-sound'), ['Right - Clear', 'Right - Diminished', 'Right - Wheeze', 'Right - Rales', 'Right - Rhonchi']);
+    rotateButton(document.getElementById('right-lung-sound'), ['Right - Not Checked', 'Right - Clear', 'Right - Diminished', 'Right - Wheeze', 'Right - Rales', 'Right - Rhonchi']);
 
 // Chest Pain
 document.getElementById('chest-pain').onclick = () => 
     showHide(document.getElementById('chest-pain'), document.getElementById('cardiac-assessment'));
 
+// Oxygen
+document.getElementById('oxygen').onclick = () =>
+    showHide(document.getElementById('oxygen'), document.getElementById('oxygen-info'));
+
+document.getElementById('oxygen-improved').onclick = () =>
+    showHide(document.getElementById('oxygen-improved'), document.getElementById('oxygen-info2'), true);
+
+// Airway
+document.getElementById('airway').onclick = () =>
+    showHide(document.getElementById('airway'), document.getElementById('airway-info'));
+document.getElementById('airway-nasal').onclick = () =>
+    showHide(document.getElementById('airway-nasal'), document.getElementById('airway-size-div'));
+document.getElementById('airway-oral').onclick = () =>
+    showHide(document.getElementById('airway-nasal'), document.getElementById('airway-size-div'));
+
+// Albuterol
+document.getElementById('albuterol').onclick = () =>
+    showHide(document.getElementById('albuterol'), document.getElementById('albuterol-info'))
+
+document.getElementById('albuterol-mdi').onclick = () =>
+    showHide(document.getElementById('albuterol-mdi'), document.getElementById("mdi-info-div"));
+
+document.getElementById('albuterol-hhn').onclick = () =>
+    showHide(document.getElementById('albuterol-hhn'), document.getElementById('hhn-info-div'));
+
+document.getElementById('hhn-two-doses').onclick = () =>
+    showHide(document.getElementById('hhn-two-doses'), document.getElementById('hhn-spo2-dose2-div'));
+document.getElementById('hhn-one-dose').onclick = () =>
+    showHide(document.getElementById('hhn-two-doses'), document.getElementById('hhn-spo2-dose2-div'));
+
+// CPAP
+document.getElementById('cpap').onclick = () =>
+    showHide(document.getElementById('cpap'), document.getElementById('cpap-info-div'));
+
+// Aspirin
+document.getElementById('asa').onclick = () =>
+    showHide(document.getElementById('asa'), document.getElementById('asa-info-div'));
+
+// Epi-pEn
+document.getElementById('epi-pen').onclick = () =>
+    showHide(document.getElementById('epi-pen'), document.getElementById('epi-div'));
 
 // Update Box and Reset Buttons
 generateButton.onclick = updateBox;

@@ -5,6 +5,14 @@ html {
     font-size: 16px;
 }
 
+h4 a {
+    color: #3d3d3d;
+}
+
+h4 {
+    color: #3d3d3d
+}
+
 .bold-label {
     font-weight: bold;
     font-size: 1.12rem;
@@ -136,3 +144,36 @@ footer h3 {
     margin: 10px auto 0px auto;
     justify-self: center;
 }
+
+#oxygen-info {
+    display: none;
+}
+
+#oxygen-info2 {
+    display: none;
+}
+
+#airway-info {
+    display: none;
+}
+
+#airway-size-div {
+    display: none;
+}
+
+#albuterol-info {
+    display: none;
+}
+
+#epi-div {
+    display: none;
+}
+
+#asa-info-div {
+    display: none;
+}
+
+#cpap-info-div {
+    display: none;
+}
+
